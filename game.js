@@ -652,20 +652,9 @@ function listenOnlineGameState(code) {
       }
     }
 
-    // Restaurar cartas descartadas propias desde Firebase (evita que se borren al recibir updates)
-    const myFlippedKey = myRole === 'p1' ? 'flippedP1' : 'flippedP2';
-    const savedFlipped = room[myFlippedKey];
-    if (Array.isArray(savedFlipped)) {
-      myFlipped = new Set(savedFlipped);
-      // Re-aplicar visualmente al tablero
-      document.querySelectorAll('#board-online .char-card').forEach(card => {
-        if (myFlipped.has(card.dataset.name)) {
-          card.classList.add('flipped');
-        } else {
-          card.classList.remove('flipped');
-        }
-      });
-    }
+    // Las cartas descartadas se gestionan solo con myFlipped local.
+    // No se leen de Firebase para evitar race conditions y escrituras innecesarias.
+    // El tablero ya se mantiene correcto porque toggleCardOnline actualiza myFlipped y la clase CSS directamente.
 
     // Comprobar victoria
     if (room.winner) {
@@ -835,8 +824,9 @@ function toggleCard(card, playerNum) {
 // =============================================
 //  TOGGLE CARTAS — Online
 // =============================================
-async function toggleCardOnline(card) {
+function toggleCardOnline(card) {
   // Siempre se puede marcar/desmarcar cartas, sea o no tu turno
+  // myFlipped es la fuente de verdad local — no necesita sincronizarse con Firebase
   const name = card.dataset.name;
   if (myFlipped.has(name)) {
     myFlipped.delete(name);
@@ -844,19 +834,6 @@ async function toggleCardOnline(card) {
   } else {
     myFlipped.add(name);
     card.classList.add('flipped');
-  }
-
-  // Persistir en Firebase para no perder el estado al recibir updates
-  if (roomCode && window.FB) {
-    const { db, ref, update } = window.FB;
-    const flippedKey = myRole === 'p1' ? 'flippedP1' : 'flippedP2';
-    try {
-      await update(ref(db, `rooms/${roomCode}`), {
-        [flippedKey]: [...myFlipped]
-      });
-    } catch (err) {
-      console.warn('Error al guardar cartas descartadas:', err);
-    }
   }
 }
 
