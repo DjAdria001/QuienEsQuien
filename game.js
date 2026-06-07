@@ -19,7 +19,7 @@ const CSM_CHARACTERS = [
   { name: "Pochita",      img: "https://preview.redd.it/pochita-drawing-update-v0-n4zj757fc5sc1.jpg?width=640&crop=smart&auto=webp&s=d3a9aa5782b1e13a8dc9aebd1d7623eba2f6079e" },
   { name: "Nayuta",       img: "https://static0.srcdn.com/wordpress/wp-content/uploads/2024/07/nayuta-csm-cover.jpg?w=1200&h=900&fit=crop" },
   { name: "Future Devil", img: "https://static.wikia.nocookie.net/chainsaw-man/images/0/02/Future_Devil_anime.png/revision/latest?cb=20221220183132" },
-  { name: "Asa Mitaka",   img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKPT37KME7hWe-SZuOKHBUeuskGifnGyImXw&s" },
+  { name: "Asa Mitaka",   img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjfz4VGOn7vIeJBMHrFqCKIT1fcLDD5CoJtw&s" },
   { name: "Yoru",         img: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/05/chainsaw-man-who-is-yoru-the-war-devil-asa-mitaka-featured.jpg?w=1600&h=900&fit=crop" },
   { name: "Morti",        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzNLJP3_J64sTBM8gST7FyxOkkcFdBAA8tzA&s" },
   { name: "Fami",         img: "https://static.wikia.nocookie.net/chainsaw-man/images/c/c1/Volume_21_%28Textless%29.png/revision/latest/scale-to-width-down/1200?cb=20250626083013" },
