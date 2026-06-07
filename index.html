@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Quién es Quién?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       PANTALLA: ELEGIR MODO DE JUEGO
+  =========================================== -->
+  <div id="screen-mode" class="screen active">
+    <div class="setup-box mode-box">
+      <div class="logo">¿QUIÉN ES <span>QUIÉN</span>?</div>
+      <div class="subtitle">El juego clásico con tus personajes favoritos</div>
+      <div class="mode-cards">
+        <div class="mode-card" onclick="selectMode('local')">
+          <div class="mode-icon">🏠</div>
+          <div class="mode-title">Local</div>
+          <div class="mode-desc">2 jugadores en el mismo dispositivo</div>
+        </div>
+        <div class="mode-card" onclick="selectMode('online')">
+          <div class="mode-icon">🌐</div>
+          <div class="mode-title">Online</div>
+          <div class="mode-desc">Juega con alguien en otro dispositivo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PANTALLA: SALA ONLINE
+  =========================================== -->
+  <div id="screen-online-lobby" class="screen">
+    <div class="setup-box">
+      <button class="back-btn" onclick="goToModeSelect()">← Volver</button>
+      <div class="logo" style="font-size:2.2rem; margin-bottom:0.25rem;">MODO ONLINE</div>
+      <div class="subtitle">Sala privada con código</div>
+
+      <div id="online-name-section">
+        <div class="section-label">Tu nombre</div>
+        <input type="text" id="online-player-name" value="Jugador" maxlength="16" style="margin-bottom:1.5rem;">
+      </div>
+
+      <div class="online-options">
+        <button class="online-btn create-btn" onclick="createRoom()">
+          <span class="btn-icon">🎲</span>
+          <span>Crear Sala</span>
+        </button>
+        <div class="or-divider">o</div>
+        <div class="join-group">
+          <input type="text" id="room-code-input" placeholder="Código de sala (ej: ABCD)" maxlength="6" style="text-transform:uppercase; text-align:center; font-size:1.2rem; letter-spacing:4px;">
+          <button class="online-btn join-btn" onclick="joinRoom()">
+            <span class="btn-icon">🚪</span>
+            <span>Unirse a Sala</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="loading-msg" id="online-status"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PANTALLA: SALA DE ESPERA (waiting room)
+  =========================================== -->
+  <div id="screen-waiting" class="screen">
+    <div class="setup-box">
+      <div class="logo" style="font-size:2rem;">SALA CREADA</div>
+      <div class="subtitle">Comparte este código con tu rival</div>
+      <div class="room-code-display" id="room-code-display">----</div>
+      <div class="waiting-status" id="waiting-status">
+        <div class="spinner"></div>
+        <span>Esperando al otro jugador...</span>
+      </div>
+      <button class="btn-cancel-room" onclick="cancelRoom()">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PANTALLA DE CONFIGURACIÓN (local)
+  =========================================== -->
+  <div id="screen-setup" class="screen">
+    <div class="setup-box">
+      <button class="back-btn" id="setup-back-btn" onclick="goToModeSelect()">← Volver</button>
+      <div class="logo">¿QUIÉN ES <span>QUIÉN</span>?</div>
+      <div class="subtitle">El juego clásico con tus personajes favoritos</div>
+
+      <!-- Selector de categoría -->
+      <div class="section-label">Categoría</div>
+      <div class="category-tabs" style="margin-bottom: 1.5rem;">
+        <button class="tab-btn active" id="tab-csm" onclick="switchTab('csm')">
+          ⛓️ Chainsaw Man
+        </button>
+        <button class="tab-btn" id="tab-poke" onclick="switchTab('pokemon')">
+          🔴 Pokémon
+        </button>
+      </div>
+
+      <!-- Panel Chainsaw Man -->
+      <div id="panel-csm" class="filters-panel active">
+        <div class="section-label">Personajes (mínimo 9)</div>
+        <div class="csm-chars" id="csm-char-list"></div>
+      </div>
+
+      <!-- Panel Pokémon -->
+      <div id="panel-pokemon" class="filters-panel">
+        <div class="filter-row">
+          <div>
+            <label>Generación</label>
+            <select id="poke-gen">
+              <option value="0">Todas</option>
+              <option value="1">Gen 1 — Kanto (1-151)</option>
+              <option value="2">Gen 2 — Johto (152-251)</option>
+              <option value="3">Gen 3 — Hoenn (252-386)</option>
+              <option value="4">Gen 4 — Sinnoh (387-493)</option>
+              <option value="5">Gen 5 — Unova (494-649)</option>
+              <option value="6">Gen 6 — Kalos (650-721)</option>
+              <option value="7">Gen 7 — Alola (722-809)</option>
+              <option value="8">Gen 8 — Galar (810-905)</option>
+              <option value="9">Gen 9 — Paldea (906-1025)</option>
+            </select>
+          </div>
+          <div>
+            <label>Tipo</label>
+            <select id="poke-type">
+              <option value="">Todos los tipos</option>
+              <option>normal</option><option>fire</option><option>water</option>
+              <option>grass</option><option>electric</option><option>ice</option>
+              <option>fighting</option><option>poison</option><option>ground</option>
+              <option>flying</option><option>psychic</option><option>bug</option>
+              <option>rock</option><option>ghost</option><option>dragon</option>
+              <option>dark</option><option>steel</option><option>fairy</option>
+            </select>
+          </div>
+          <div>
+            <label>Cantidad de cartas</label>
+            <select id="poke-count">
+              <option value="16">16 Pokémon</option>
+              <option value="20">20 Pokémon</option>
+              <option value="24">24 Pokémon</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nombres de jugadores (solo local) -->
+      <div id="player-names-section">
+        <div class="section-label" style="margin-top: 1.25rem;">Jugadores</div>
+        <div class="player-inputs">
+          <div>
+            <label>Jugador 1</label>
+            <input type="text" id="p1-name" value="Jugador 1" maxlength="16">
+          </div>
+          <div>
+            <label>Jugador 2</label>
+            <input type="text" id="p2-name" value="Jugador 2" maxlength="16">
+          </div>
+        </div>
+      </div>
+
+      <button class="start-btn" id="start-btn" onclick="startGame()">¡JUGAR!</button>
+      <div class="loading-msg" id="loading-msg"></div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       PANTALLA DE JUEGO
+  =========================================== -->
+  <div id="screen-game" class="screen">
+
+    <div class="game-header">
+      <div class="player-badge p1" id="badge-p1">
+        <div class="dot"></div>
+        <span id="badge-p1-name">J1</span>
+      </div>
+      <div class="header-center">
+        <div class="turn-label">Turno de</div>
+        <div class="turn-player" id="turn-player-name">—</div>
+      </div>
+      <div class="player-badge p2" id="badge-p2">
+        <span id="badge-p2-name">J2</span>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- Tablero online (solo el propio) -->
+    <div class="boards-container" id="boards-local">
+      <div class="board-section p1-board">
+        <div class="board-label" id="board-label-p1">Tablero J1</div>
+        <div class="board-grid" id="board-p1"></div>
+      </div>
+      <div class="board-section p2-board">
+        <div class="board-label" id="board-label-p2">Tablero J2</div>
+        <div class="board-grid" id="board-p2"></div>
+      </div>
+    </div>
+
+    <!-- Tablero online: solo el tablero del jugador actual -->
+    <div class="boards-container" id="boards-online" style="display:none;">
+      <div class="board-section online-single-board">
+        <div class="board-label" id="board-label-online">Mi tablero</div>
+        <div class="board-grid" id="board-online"></div>
+      </div>
+      <!-- CHAT -->
+      <div class="chat-panel">
+        <div class="chat-title">💬 Chat</div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input-row">
+          <input type="text" id="chat-input" placeholder="Escribe un mensaje..." maxlength="120" onkeydown="if(event.key==='Enter') sendChat()">
+          <button class="chat-send-btn" onclick="sendChat()">➤</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="guess-bar">
+      <input type="text" class="guess-input" id="guess-input"
+             placeholder="Adivina el personaje secreto..."
+             list="chars-datalist">
+      <datalist id="chars-datalist"></datalist>
+      <button class="guess-btn" onclick="makeGuess()">🎯 Adivinar</button>
+      <button class="end-turn-btn" onclick="endTurn()">Pasar →</button>
+      <button class="end-turn-btn danger" onclick="confirmQuit()">✕ Salir</button>
+    </div>
+
+  </div>
+
+
+  <!-- ==========================================
+       PANTALLA DE VICTORIA
+  =========================================== -->
+  <div id="screen-win" class="screen">
+    <div class="win-box">
+      <div class="win-trophy">🏆</div>
+      <div class="win-title" id="win-title">¡GANADOR!</div>
+      <div class="win-subtitle" id="win-subtitle">Ha adivinado el personaje secreto</div>
+      <div class="win-reveal">
+        <div class="label">El personaje secreto era</div>
+        <img id="win-secret-img" src="" alt="">
+        <div class="char-name" id="win-secret-name"></div>
+      </div>
+      <div class="modal-btns">
+        <button class="btn-primary" onclick="playAgain()">Jugar de nuevo</button>
+        <button class="btn-cancel"  onclick="goHome()">Menú principal</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       MODALES
+  =========================================== -->
+
+  <!-- Modal: personaje secreto -->
+  <div class="modal-overlay" id="modal-secret">
+    <div class="modal">
+      <h2 style="color: var(--gold);">TU PERSONAJE</h2>
+      <p id="modal-secret-player">Mira en secreto tu personaje objetivo</p>
+      <div class="secret-char-card">
+        <img id="modal-secret-img" src="" alt="">
+        <span class="name" id="modal-secret-name"></span>
+      </div>
+      <div class="modal-btns">
+        <button class="btn-confirm" id="modal-secret-ok">¡Entendido!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: resultado de adivinanza -->
+  <div class="modal-overlay" id="modal-guess-result">
+    <div class="modal">
+      <h2 id="gr-title">—</h2>
+      <p  id="gr-msg">—</p>
+      <div class="modal-btns">
+        <button class="btn-confirm" id="gr-ok"
+                onclick="closeModal('modal-guess-result')">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: confirmar salida -->
+  <div class="modal-overlay" id="modal-quit">
+    <div class="modal">
+      <h2 style="color: var(--red);">¿SALIR?</h2>
+      <p>Se perderá la partida actual.</p>
+      <div class="modal-btns">
+        <button class="btn-danger" onclick="quitGame()">Sí, salir</button>
+        <button class="btn-cancel" onclick="closeModal('modal-quit')">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: esperando turno (online) -->
+  <div class="modal-overlay" id="modal-waiting-turn">
+    <div class="modal">
+      <h2 style="color: var(--blue);">⏳ ESPERA</h2>
+      <p id="waiting-turn-msg">Es el turno del otro jugador...</p>
+    </div>
+  </div>
+
+  <!-- Modal: rival desconectado -->
+  <div class="modal-overlay" id="modal-disconnected">
+    <div class="modal">
+      <h2 style="color: var(--red);">😢 DESCONECTADO</h2>
+      <p>El otro jugador ha abandonado la partida.</p>
+      <div class="modal-btns">
+        <button class="btn-primary" onclick="goHome()">Menú principal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module" src="firebase.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
