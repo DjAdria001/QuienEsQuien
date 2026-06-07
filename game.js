@@ -29,6 +29,29 @@ const CSM_CHARACTERS = [
   { name: "Fumiko",        img: "https://static.wikia.nocookie.net/chainsaw-man/images/6/60/Fumiko_Mifune_Infobox.png/revision/latest/scale-to-width-down/250?cb=20240902225827" },
 ];
 
+const JJK_CHARACTERS = [
+  { name: "Yuji Itadori",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/7/7f/Yuji_Itadori_anime.png/revision/latest?cb=20201001190250" },
+  { name: "Megumi Fushiguro",  img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/3e/Megumi_Fushiguro_anime.png/revision/latest?cb=20201001190312" },
+  { name: "Nobara Kugisaki",   img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/0/0d/Nobara_Kugisaki_anime.png/revision/latest?cb=20201001190330" },
+  { name: "Satoru Gojo",       img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/3b/Satoru_Gojo_anime.png/revision/latest?cb=20201001190402" },
+  { name: "Suguru Geto",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/4/4a/Suguru_Geto_anime.png/revision/latest?cb=20201001190425" },
+  { name: "Ryomen Sukuna",     img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/9/9d/Sukuna_anime.png/revision/latest?cb=20201001190448" },
+  { name: "Toge Inumaki",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/7/7b/Toge_Inumaki_anime.png/revision/latest?cb=20201001190510" },
+  { name: "Panda",             img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/2/2f/Panda_anime.png/revision/latest?cb=20201001190532" },
+  { name: "Maki Zenin",        img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/5/5e/Maki_Zenin_anime.png/revision/latest?cb=20201001190555" },
+  { name: "Toji Fushiguro",    img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/6/6b/Toji_Fushiguro_anime.png/revision/latest?cb=20210716084821" },
+  { name: "Kento Nanami",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/8/8e/Kento_Nanami_anime.png/revision/latest?cb=20201001190620" },
+  { name: "Mahito",            img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/2/2d/Mahito_anime.png/revision/latest?cb=20201001190642" },
+  { name: "Jogo",              img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/6/6e/Jogo_anime.png/revision/latest?cb=20201001190705" },
+  { name: "Hanami",            img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/8/8f/Hanami_anime.png/revision/latest?cb=20201001190728" },
+  { name: "Choso",             img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/1/1a/Choso_anime.png/revision/latest?cb=20210806090512" },
+  { name: "Yuta Okkotsu",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/3a/Yuta_Okkotsu_anime.png/revision/latest?cb=20211224093702" },
+  { name: "Rika Orimoto",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/5/5c/Rika_Orimoto.png/revision/latest?cb=20211224093745" },
+  { name: "Aoi Todo",          img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/4/4f/Aoi_Todo_anime.png/revision/latest?cb=20201001190810" },
+  { name: "Mai Zenin",         img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/0/0a/Mai_Zenin_anime.png/revision/latest?cb=20201001190835" },
+  { name: "Naoya Zenin",       img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/3f/Naoya_Zenin.png/revision/latest?cb=20210727123456" }
+];
+
 const GEN_RANGES = {
   0:[1,1025],1:[1,151],2:[152,251],3:[252,386],4:[387,493],
   5:[494,649],6:[650,721],7:[722,809],8:[810,905],9:[906,1025],
