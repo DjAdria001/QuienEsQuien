@@ -63,6 +63,7 @@ const GEN_RANGES = {
 let gameMode         = null;  // 'local' | 'online'
 let selectedTab      = 'csm';
 let selectedCsmChars = new Set(CSM_CHARACTERS.map(c => c.name));
+let selectedJjkChars = new Set(JJK_CHARACTERS.map(c => c.name));
 let gameChars        = [];
 let secretP1         = null;
 let secretP2         = null;
@@ -308,10 +309,14 @@ async function cancelRoom() {
 // =============================================
 function switchTab(tab) {
   selectedTab = tab;
+
   document.getElementById('tab-csm').classList.toggle('active', tab === 'csm');
   document.getElementById('tab-poke').classList.toggle('active', tab === 'pokemon');
+  document.getElementById('tab-jjk').classList.toggle('active', tab === 'jjk');
+
   document.getElementById('panel-csm').classList.toggle('active', tab === 'csm');
   document.getElementById('panel-pokemon').classList.toggle('active', tab === 'pokemon');
+  document.getElementById('panel-jjk').classList.toggle('active', tab === 'jjk');
 }
 
 // =============================================
@@ -334,6 +339,33 @@ function buildCsmList() {
         btn.classList.add('selected');
       }
     });
+    el.appendChild(btn);
+  });
+}
+
+// =============================================
+//  SETUP — Lista de personajes JJK
+// =============================================
+function buildJjkList() {
+  const el = document.getElementById('jjk-char-list');
+  el.innerHTML = '';
+
+  JJK_CHARACTERS.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'char-toggle selected';
+    btn.textContent = c.name;
+    btn.dataset.name = c.name;
+
+    btn.addEventListener('click', () => {
+      if (selectedJjkChars.has(c.name)) {
+        selectedJjkChars.delete(c.name);
+        btn.classList.remove('selected');
+      } else {
+        selectedJjkChars.add(c.name);
+        btn.classList.add('selected');
+      }
+    });
+
     el.appendChild(btn);
   });
 }
@@ -431,15 +463,26 @@ async function startGame() {
     p2Name = document.getElementById('p2-name').value.trim() || 'Jugador 2';
   }
 
-  if (selectedTab === 'csm') {
-    if (selectedCsmChars.size < 9) {
-      msg.textContent = '⚠️ Selecciona al menos 9 personajes';
-      msg.style.color = 'var(--red)';
-      return;
-    }
-    gameChars = CSM_CHARACTERS.filter(c => selectedCsmChars.has(c.name));
-    shuffle(gameChars);
-  } else {
+if (selectedTab === 'csm') {
+  if (selectedCsmChars.size < 9) {
+    msg.textContent = '⚠️ Selecciona al menos 9 personajes';
+    msg.style.color = 'var(--red)';
+    return;
+  }
+  gameChars = CSM_CHARACTERS.filter(c => selectedCsmChars.has(c.name));
+  shuffle(gameChars);
+
+} else if (selectedTab === 'jjk') {
+
+  if (selectedJjkChars.size < 9) {
+    msg.textContent = '⚠️ Selecciona al menos 9 personajes';
+    msg.style.color = 'var(--red)';
+    return;
+  }
+
+  gameChars = JJK_CHARACTERS.filter(c => selectedJjkChars.has(c.name));
+  shuffle(gameChars);
+} else {
     btn.disabled = true;
     const gen   = parseInt(document.getElementById('poke-gen').value);
     const type  = document.getElementById('poke-type').value;
@@ -970,4 +1013,5 @@ function playAgain() {
 // =============================================
 document.addEventListener('DOMContentLoaded', () => {
   buildCsmList();
+  buildJjkList();
 });
