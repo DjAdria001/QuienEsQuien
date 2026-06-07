@@ -23,7 +23,7 @@ const CSM_CHARACTERS = [
   { name: "Yoru",          img: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/05/chainsaw-man-who-is-yoru-the-war-devil-asa-mitaka-featured.jpg?w=1600&h=900&fit=crop" },
   { name: "Morti",         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzNLJP3_J64sTBM8gST7FyxOkkcFdBAA8tzA&s" },
   { name: "Falling Devil", img: "https://dthezntil550i.cloudfront.net/st/latest/st2306041035108110024105396/1280_960/ae46c2ba-893f-4c02-8752-836d0084c278.png" },
-  { name: "Fox Devil",     img: "https://static.wikia.nocookie.net/chainsaw-man/images/1/14/Fox_Devil_eating_the_Leech_Devil.png/revision/latest?cb=20190609132602" },
+  { name: "Fox Devil",     img: "https://static.wikia.nocookie.net/vsbattles/images/a/a2/FoxDevilAnime.png/revision/latest?cb=20250417042103" },
   { name: "Fami",          img: "https://static.wikia.nocookie.net/chainsaw-man/images/c/c1/Volume_21_%28Textless%29.png/revision/latest/scale-to-width-down/1200?cb=20250626083013" },
   { name: "Barem",         img: "https://static.wikia.nocookie.net/villains/images/d/df/BaremHybrid.jpg/revision/latest?cb=20230924203221" },
   { name: "Fumiko",        img: "https://static.wikia.nocookie.net/chainsaw-man/images/6/60/Fumiko_Mifune_Infobox.png/revision/latest/scale-to-width-down/250?cb=20240902225827" },
