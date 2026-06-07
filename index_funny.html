@@ -13,6 +13,7 @@
        PANTALLA: ELEGIR MODO DE JUEGO
   =========================================== -->
   <div id="screen-mode" class="screen active">
+    <div class="bg-questions" id="bg-questions"></div>
     <div class="setup-box mode-box">
       <div class="logo">¿QUIÉN ES <span>QUIÉN</span>?</div>
       <div class="edition">Meme Edition</div>
@@ -233,12 +234,16 @@
     </div>
 
     <div class="guess-bar">
+      <div class="waiting-turn-inline" id="waiting-turn-inline" style="display:none;">
+        <span class="waiting-dot-anim">⏳</span>
+        <span id="waiting-turn-msg">Turno del rival...</span>
+      </div>
       <input type="text" class="guess-input" id="guess-input"
              placeholder="Adivina el personaje secreto..."
              list="chars-datalist">
       <datalist id="chars-datalist"></datalist>
-      <button class="guess-btn" onclick="makeGuess()">🎯 Adivinar</button>
-      <button class="end-turn-btn" onclick="endTurn()">Pasar →</button>
+      <button class="guess-btn" id="guess-btn" onclick="makeGuess()">🎯 Adivinar</button>
+      <button class="end-turn-btn" id="end-turn-btn" onclick="endTurn()">Pasar →</button>
       <button class="end-turn-btn danger" onclick="confirmQuit()">✕ Salir</button>
     </div>
 
@@ -309,13 +314,8 @@
     </div>
   </div>
 
-  <!-- Modal: esperando turno (online) -->
-  <div class="modal-overlay" id="modal-waiting-turn">
-    <div class="modal">
-      <h2 style="color: var(--blue);">⏳ ESPERA</h2>
-      <p id="waiting-turn-msg">Es el turno del otro jugador...</p>
-    </div>
-  </div>
+  <!-- Modal: esperando turno (online) — reemplazado por banner no bloqueante -->
+  <div id="waiting-turn-banner" style="display:none;"></div>
 
   <!-- Modal: rival desconectado -->
   <div class="modal-overlay" id="modal-disconnected">
