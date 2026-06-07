@@ -55,6 +55,16 @@ body {
 }
 .logo span { color: var(--red); }
 
+.edition {
+  font-family: 'Bangers', cursive;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  text-align: center;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
 .subtitle {
   text-align: center;
   color: var(--muted);
@@ -123,6 +133,18 @@ body {
   color: var(--gold);
 }
 .mode-desc { font-size: 0.85rem; color: var(--muted); }
+
+.funny-card {
+  border-color: #ff6b6b;
+}
+.funny-card:hover {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  transform: translateY(-3px);
+}
+.funny-card .mode-title {
+  color: #ff6b6b;
+}
 
 /* ===== ONLINE LOBBY ===== */
 .online-options {

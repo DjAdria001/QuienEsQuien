@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¿Quién es Quién?</title>
+  <title>¿Quién es Quién? — Funny</title>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -15,7 +15,8 @@
   <div id="screen-mode" class="screen active">
     <div class="setup-box mode-box">
       <div class="logo">¿QUIÉN ES <span>QUIÉN</span>?</div>
-      <div class="subtitle">El juego clásico con tus personajes favoritos</div>
+      <div class="edition">Meme Edition</div>
+      <div class="subtitle">El juego clásico con tus personajes favoritos pero en version meme</div>
       <div class="mode-cards">
         <div class="mode-card" onclick="selectMode('local')">
           <div class="mode-icon">🏠</div>
@@ -27,9 +28,10 @@
           <div class="mode-title">Online</div>
           <div class="mode-desc">Juega con alguien en otro dispositivo</div>
         </div>
+
       </div>
     </div>
-    <button onclick="window.location.href='index_funny.html'" style="position:fixed;bottom:20px;right:20px;background:transparent;border:1px solid #0f3460;color:#8892b0;padding:8px 14px;border-radius:8px;font-family:'Nunito',sans-serif;font-size:0.82rem;cursor:pointer;">🔄 Versión meme</button>
+    <button onclick="window.location.href='index.html'" style="position:fixed;bottom:20px;right:20px;background:transparent;border:1px solid #0f3460;color:#8892b0;padding:8px 14px;border-radius:8px;font-family:'Nunito',sans-serif;font-size:0.82rem;cursor:pointer;">🔄 Versión normal</button>
   </div>
 
   <!-- ==========================================
@@ -328,7 +330,6 @@
 
   <!-- Firebase SDK -->
   <script type="module" src="firebase.js"></script>
-  <script src="game.js"></script>
-
+  <script src="Funny/game.js"></script>
 </body>
 </html>
