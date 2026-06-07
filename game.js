@@ -20,7 +20,7 @@ const CSM_CHARACTERS = [
   { name: "Nayuta",        img: "https://static0.srcdn.com/wordpress/wp-content/uploads/2024/07/nayuta-csm-cover.jpg?w=1200&h=900&fit=crop" },
   { name: "Future Devil",  img: "https://static.wikia.nocookie.net/chainsaw-man/images/0/02/Future_Devil_anime.png/revision/latest?cb=20221220183132" },
   { name: "Asa Mitaka",    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjfz4VGOn7vIeJBMHrFqCKIT1fcLDD5CoJtw&s" },
-  { name: "Yoru",          img: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/05/chainsaw-man-who-is-yoru-the-war-devil-asa-mitaka-featured.jpg?w=1600&h=900&fit=crop" },
+  { name: "Yoru",          img: "https://static0.cbrimages.com/wordpress/wp-content/uploads/2024/09/war-devil-asa-mitaka-and-falling-devil.jpg?w=1200&h=675&fit=crop" },
   { name: "Morti",         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzNLJP3_J64sTBM8gST7FyxOkkcFdBAA8tzA&s" },
   { name: "Falling Devil", img: "https://dthezntil550i.cloudfront.net/st/latest/st2306041035108110024105396/1280_960/ae46c2ba-893f-4c02-8752-836d0084c278.png" },
   { name: "Fox Devil",     img: "https://static.wikia.nocookie.net/vsbattles/images/a/a2/FoxDevilAnime.png/revision/latest?cb=20250417042103" },
