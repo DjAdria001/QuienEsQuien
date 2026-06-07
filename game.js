@@ -2,7 +2,7 @@
 //  DATOS — Personajes de Chainsaw Man
 // =============================================
 const CSM_CHARACTERS = [
-  { name: "Denji",       img: "https://static.wikia.nocookie.net/chainsaw-man/images/e/e8/Denji_anime.png/revision/latest?cb=20221018185742&path-prefix=es" },
+  { name: "Denji",       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2lGfyBkiEflBkIlYF5DDyj3uxYKTDk-mLNw&s" },
   { name: "Makima",      img: "https://static.wikia.nocookie.net/chainsaw-man/images/b/b6/Makima_Anime_Profile.png" },
   { name: "Power",       img: "https://static.wikia.nocookie.net/chainsaw-man/images/9/9d/Power_Anime_Profile.png" },
   { name: "Aki",         img: "https://static.wikia.nocookie.net/chainsaw-man/images/a/ab/Aki_Hayakawa_Anime_Profile.png" },
