@@ -30,26 +30,27 @@ const CSM_CHARACTERS = [
 ];
 
 const JJK_CHARACTERS = [
-  { name: "Yuji Itadori",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/7/7f/Yuji_Itadori_anime.png/revision/latest?cb=20201001190250" },
-  { name: "Megumi Fushiguro",  img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/3e/Megumi_Fushiguro_anime.png/revision/latest?cb=20201001190312" },
-  { name: "Nobara Kugisaki",   img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/0/0d/Nobara_Kugisaki_anime.png/revision/latest?cb=20201001190330" },
-  { name: "Satoru Gojo",       img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/3b/Satoru_Gojo_anime.png/revision/latest?cb=20201001190402" },
-  { name: "Suguru Geto",       img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/4/4a/Suguru_Geto_anime.png/revision/latest?cb=20201001190425" },
-  { name: "Ryomen Sukuna",     img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/9/9d/Sukuna_anime.png/revision/latest?cb=20201001190448" },
-  { name: "Toge Inumaki",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/7/7b/Toge_Inumaki_anime.png/revision/latest?cb=20201001190510" },
-  { name: "Panda",             img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/2/2f/Panda_anime.png/revision/latest?cb=20201001190532" },
-  { name: "Maki Zenin",        img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/5/5e/Maki_Zenin_anime.png/revision/latest?cb=20201001190555" },
-  { name: "Toji Fushiguro",    img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/6/6b/Toji_Fushiguro_anime.png/revision/latest?cb=20210716084821" },
-  { name: "Kento Nanami",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/8/8e/Kento_Nanami_anime.png/revision/latest?cb=20201001190620" },
-  { name: "Mahito",            img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/2/2d/Mahito_anime.png/revision/latest?cb=20201001190642" },
-  { name: "Jogo",              img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/6/6e/Jogo_anime.png/revision/latest?cb=20201001190705" },
-  { name: "Hanami",            img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/8/8f/Hanami_anime.png/revision/latest?cb=20201001190728" },
-  { name: "Choso",             img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/1/1a/Choso_anime.png/revision/latest?cb=20210806090512" },
-  { name: "Yuta Okkotsu",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/3a/Yuta_Okkotsu_anime.png/revision/latest?cb=20211224093702" },
-  { name: "Rika Orimoto",      img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/5/5c/Rika_Orimoto.png/revision/latest?cb=20211224093745" },
-  { name: "Aoi Todo",          img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/4/4f/Aoi_Todo_anime.png/revision/latest?cb=20201001190810" },
-  { name: "Mai Zenin",         img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/0/0a/Mai_Zenin_anime.png/revision/latest?cb=20201001190835" },
-  { name: "Naoya Zenin",       img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/3f/Naoya_Zenin.png/revision/latest?cb=20210727123456" }
+  { name: "Yuji Itadori",      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzBi77yp7lx4z9EV1p-kVbgjdogmYkhI7vOQ&s" },
+  { name: "Megumi Fushiguro",  img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/2/2f/Megumi_decides_against_sacrificing_himself_%28Anime%29.png/revision/latest?cb=20210319211218" },
+  { name: "Nobara Kugisaki",   img: "https://i.redd.it/5avrkp466moc1.jpeg" },
+  { name: "Satoru Gojo",       img: "https://www.geekmi.news/img/2021/07/26/gojo1_x1x.jpg?__scale=w:1200,h:1200,t:2" },
+  { name: "Suguru Geto",       img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/0/02/Suguru_takes_over_the_remnants_of_the_star_religious_group_%28Anime%29.png/revision/latest?cb=20230803191919" },
+  { name: "Kenjaku",           img: "https://static0.dualshockersimages.com/wordpress/wp-content/uploads/2023/07/why-geto-consumed-curses.jpg"},
+  { name: "Ryomen Sukuna",     img: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/06/ryomen-sukuna.jpg" },
+  { name: "Toge Inumaki",      img: "https://s.yimg.com/ny/api/res/1.2/NMhG86zisnepd.QxeJrTwA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTIwNDg7aD0xMTUyO2NmPXdlYnA-/https://media.zenfs.com/en/comingsoon_net_477/a6f000ed102fc4c2a324b18de87364c3" },
+  { name: "Panda",             img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/7/74/Panda_reinforcing_his_body_with_cursed_energy_%28Anime%29.png/revision/latest?cb=20210130041020" },
+  { name: "Maki Zenin",        img: "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/01/maki-s3-jujutsu-kaisen-jjk.jpg?w=1600&h=1600&fit=crop" },
+  { name: "Toji Fushiguro",    img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/f/f1/Toji_shows_himself_%28Anime%29.png/revision/latest?cb=20230720194633" },
+  { name: "Kento Nanami",      img: "https://swordslice.com/cdn/shop/articles/jjk-does-nanami-die_0fc10cc6-d080-4a0a-b4b9-17b0cf2639f9.webp?v=1771252069" },
+  { name: "Mahito",            img: "https://preview.redd.it/mahito-sukuna-all-the-way-v0-xveobl01lm9e1.jpeg?width=640&crop=smart&auto=webp&s=b20ccfcbe85536df73824691062f80bb68ab3d99" },
+  { name: "Jogo",              img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/f/f9/Jogo_forces_civilians_on_the_train_tracks_%28Anime%29.png/revision/latest?cb=20230921230802" },
+  { name: "Hanami",            img: "https://m.media-amazon.com/images/M/MV5BZjY0MWQxOTctMWEwNS00ZjYwLTlhMmUtODVkODNiYmMzYmZmXkEyXkFqcGc@._V1_QL75_UY281_CR31,0,500,281_.jpg" },
+  { name: "Choso",             img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/2/20/Choso_hardening_his_body_%28Anime%29.png/revision/latest?cb=20231019234844" },
+  { name: "Yuta Okkotsu",      img: "https://i.blogs.es/4d853a/yuta-okkotsu/650_1200.jpeg" },
+  { name: "Rika",              img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/38/Cursed_Rika_emerges_%28Anime%29.png/revision/latest?cb=20220920232645" },
+  { name: "Aoi Todo",          img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/c/c3/Aoi_Todo_arrives_to_rescue_Yuji_%28Anime%29.png/revision/latest?cb=20231207194739" },
+  { name: "Mai Zenin",         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6NGxgiMr0FV4qB3FyQCSP3jT3vlJ8v74t2w&s" },
+  { name: "Naoya Zenin",       img: "https://static0.cbrimages.com/wordpress/wp-content/uploads/2025/12/naoya-zenin-2.jpg?q=70&fit=crop&w=660&dpr=1" }
 ];
 
 const GEN_RANGES = {
