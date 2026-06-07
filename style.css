@@ -504,12 +504,25 @@ input[type="text"]:focus { border-color: var(--gold); }
 
 .board-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-  gap: 8px;
-  padding: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(60px, 8vw, 100px), 1fr));
+  gap: clamp(4px, 0.5vw, 8px);
+  padding: 8px;
   overflow-y: auto;
   flex: 1;
   align-content: start;
+}
+
+/* Adjust card min size based on number of cards (set via JS on the grid element) */
+.board-grid[data-count="16"] {
+  grid-template-columns: repeat(auto-fill, minmax(clamp(70px, 9vw, 110px), 1fr));
+}
+.board-grid[data-count="20"] {
+  grid-template-columns: repeat(auto-fill, minmax(clamp(62px, 8vw, 96px), 1fr));
+}
+.board-grid[data-count="24"],
+.board-grid[data-count="25"],
+.board-grid[data-count="large"] {
+  grid-template-columns: repeat(auto-fill, minmax(clamp(55px, 7vw, 88px), 1fr));
 }
 
 /* ===== CHARACTER CARDS ===== */
@@ -870,3 +883,67 @@ input[type="text"]:focus { border-color: var(--gold); }
 /* ===== ANIMATIONS ===== */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes popIn  { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ===== ANIMATED QUESTION MARKS BACKGROUND ===== */
+.bg-questions {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-questions .q-symbol {
+  position: absolute;
+  font-family: 'Bangers', cursive;
+  color: rgba(245, 166, 35, 0.12);
+  animation: qFloat linear infinite;
+  user-select: none;
+}
+
+@keyframes qFloat {
+  0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  5%   { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
+}
+
+#screen-mode .setup-box {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== WAITING TURN INLINE BANNER ===== */
+.waiting-turn-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: rgba(52, 152, 219, 0.12);
+  border: 1.5px solid var(--blue);
+  color: var(--blue);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  animation: pulseBorder 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseBorder {
+  0%, 100% { border-color: var(--blue); box-shadow: none; }
+  50% { border-color: #74b9ff; box-shadow: 0 0 8px rgba(52,152,219,0.35); }
+}
+
+.waiting-dot-anim {
+  animation: spin 1.5s linear infinite;
+  display: inline-block;
+}
+
+.guess-btn:disabled,
+.end-turn-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+

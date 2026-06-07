@@ -646,7 +646,7 @@ function listenOnlineGameState(code) {
       updateTurnUI();
       // Si ahora es mi turno, cerrar modal de espera
       if (isMyTurn()) {
-        closeModal('modal-waiting-turn');
+        hideWaitingTurnBanner();
       } else {
         showWaitingTurnModal();
       }
@@ -679,8 +679,27 @@ function isMyTurn() {
 
 function showWaitingTurnModal() {
   const rival = myRole === 'p1' ? p2Name : p1Name;
-  document.getElementById('waiting-turn-msg').textContent = `Turno de ${rival}... Espera tu turno.`;
-  openModal('modal-waiting-turn');
+  const msg = document.getElementById('waiting-turn-msg');
+  const banner = document.getElementById('waiting-turn-inline');
+  const guessBtn = document.getElementById('guess-btn');
+  const endTurnBtn = document.getElementById('end-turn-btn');
+  const guessInput = document.getElementById('guess-input');
+  if (msg) msg.textContent = `Turno de ${rival}... espera.`;
+  if (banner) banner.style.display = 'flex';
+  if (guessBtn) guessBtn.disabled = true;
+  if (endTurnBtn) endTurnBtn.disabled = true;
+  if (guessInput) { guessInput.disabled = true; guessInput.style.opacity = '0.4'; }
+}
+
+function hideWaitingTurnBanner() {
+  const banner = document.getElementById('waiting-turn-inline');
+  const guessBtn = document.getElementById('guess-btn');
+  const endTurnBtn = document.getElementById('end-turn-btn');
+  const guessInput = document.getElementById('guess-input');
+  if (banner) banner.style.display = 'none';
+  if (guessBtn) guessBtn.disabled = false;
+  if (endTurnBtn) endTurnBtn.disabled = false;
+  if (guessInput) { guessInput.disabled = false; guessInput.style.opacity = '1'; }
 }
 
 // =============================================
@@ -736,6 +755,8 @@ function escapeHtml(str) {
 function buildBoard(boardId, playerNum) {
   const el = document.getElementById(boardId);
   el.innerHTML = '';
+  const count = gameChars.length;
+  el.dataset.count = count <= 16 ? '16' : count <= 20 ? '20' : count <= 24 ? '24' : 'large';
   gameChars.forEach(c => {
     el.appendChild(createCard(c, playerNum, 'local'));
   });
@@ -744,6 +765,8 @@ function buildBoard(boardId, playerNum) {
 function buildOnlineBoard() {
   const el = document.getElementById('board-online');
   el.innerHTML = '';
+  const count = gameChars.length;
+  el.dataset.count = count <= 16 ? '16' : count <= 20 ? '20' : count <= 24 ? '24' : 'large';
   const myPlayerNum = myRole === 'p1' ? 1 : 2;
   gameChars.forEach(c => {
     el.appendChild(createCard(c, myPlayerNum, 'online'));
@@ -801,7 +824,7 @@ function toggleCard(card, playerNum) {
 //  TOGGLE CARTAS — Online
 // =============================================
 function toggleCardOnline(card) {
-  if (!isMyTurn()) return;
+  // Siempre se puede marcar/desmarcar cartas, sea o no tu turno
   const name = card.dataset.name;
   if (myFlipped.has(name)) {
     myFlipped.delete(name);
@@ -825,9 +848,11 @@ function updateTurnUI() {
   document.getElementById('guess-input').placeholder = `¿Cuál es el personaje de ${rivalName}?`;
 
   if (gameMode === 'online') {
-    const canPlay = isMyTurn();
-    document.getElementById('guess-input').disabled   = !canPlay;
-    document.getElementById('guess-input').style.opacity = canPlay ? '1' : '0.5';
+    if (isMyTurn()) {
+      hideWaitingTurnBanner();
+    } else {
+      showWaitingTurnModal();
+    }
   }
 }
 
@@ -929,7 +954,6 @@ function showSecretModalOnline() {
   document.getElementById('modal-secret-ok').onclick = () => {
     closeModal('modal-secret');
     updateTurnUI();
-    if (!isMyTurn()) showWaitingTurnModal();
   };
 }
 
@@ -960,7 +984,7 @@ function addSecretButton() {
 //  VICTORIA
 // =============================================
 function showWin(who, winnerName, secret) {
-  closeModal('modal-waiting-turn');
+  hideWaitingTurnBanner();
   document.getElementById('win-title').textContent       = `¡${winnerName} GANA!`;
   document.getElementById('win-subtitle').textContent    = 'Adivinó el personaje secreto del rival';
   document.getElementById('win-secret-img').src          = secret.img;
@@ -1038,4 +1062,29 @@ function playAgain() {
 document.addEventListener('DOMContentLoaded', () => {
   buildCsmList();
   buildJjkList();
+  generateQuestionMarks();
 });
+
+function generateQuestionMarks() {
+  const container = document.getElementById('bg-questions');
+  if (!container) return;
+  const symbols = ['?', '¿', '?', '¿', '?'];
+  const count = 22;
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('div');
+    el.className = 'q-symbol';
+    const size = Math.random() * 60 + 30; // 30px – 90px
+    const left = Math.random() * 100;
+    const duration = Math.random() * 12 + 8; // 8s – 20s
+    const delay = Math.random() * 15;
+    const sym = symbols[Math.floor(Math.random() * symbols.length)];
+    el.textContent = sym;
+    el.style.cssText = `
+      font-size: ${size}px;
+      left: ${left}%;
+      animation-duration: ${duration}s;
+      animation-delay: -${delay}s;
+    `;
+    container.appendChild(el);
+  }
+}
