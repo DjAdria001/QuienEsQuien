@@ -87,3 +87,28 @@ const GEN_RANGES = {
   0:[1,1025],1:[1,151],2:[152,251],3:[252,386],4:[387,493],
   5:[494,649],6:[650,721],7:[722,809],8:[810,905],9:[906,1025],
 };
+
+// =============================================
+//  DATOS — Personajes de Resident Evil
+// =============================================
+const RE_CHARACTERS = [
+  { name: "Leon S. Kennedy", img: "" },
+  { name: "Claire Redfield", img: "" },
+  { name: "Jill Valentine",   img: "" },
+  { name: "Chris Redfield",   img: "" },
+  { name: "Ada Wong",        img: "" },
+  { name: "Albert Wesker",   img: "" },
+  { name: "Hunk",            img: "" },
+  { name: "Sherry Birkin",   img: "" },
+  { name: "Carlos Oliveira", img: "" },
+  { name: "Rebecca Chambers", img: "" },
+  { name: "Barry Burton",    img: "" },
+  { name: "Piers Nivans",     img: "" },
+  { name: "Ethan Winters",    img: "" },
+  { name: "Mia Winters",      img: "" },
+  { name: "Rose Winters",     img: "" },
+  { name: "Grace Ashcroft",     img: "" },
+  { name: "Sheva Alomar",       img: "" },
+  { name: "Ashley Graham", img: "" },
+];
+

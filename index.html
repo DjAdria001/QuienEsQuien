@@ -103,7 +103,17 @@
         <button class="tab-btn" id="tab-jjk" onclick="switchTab('jjk')">
           ⚡ Jujutsu Kaisen
         </button>
+        
       </div>
+      <div class="category-tabs" style="margin-bottom: 1.5rem;">
+        <button class="tab-btn" id="tab-re" onclick="switchTab('residentevil')">
+          🧟 Resident Evil
+        </button>
+        <button class="tab-btn" id="tab-mcu" onclick="switchTab('mcu')">
+          🎬 marvel
+      </div> 
+      </div>
+      
 
       <!-- Panel Chainsaw Man -->
       <div id="panel-csm" class="filters-panel active">
@@ -179,6 +189,12 @@
       <button class="start-btn" id="start-btn" onclick="startGame()">¡JUGAR!</button>
       <div class="loading-msg" id="loading-msg"></div>
     </div>
+
+
+       <!-- Panel Resident Evil -->
+       <div id="panel-residentevil" class="filters-panel">
+        <div class="section-label">Personajes (mínimo 9)</div>
+        <div class="re-chars" id="re-char-list"></div>
   </div>
 
 
