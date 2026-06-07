@@ -652,8 +652,20 @@ function listenOnlineGameState(code) {
       }
     }
 
-    // Sincronizar cartas bajadas del rival (para mostrar las mías)
-    // (Cada jugador solo ve su propio tablero, el estado del rival no se renderiza)
+    // Restaurar cartas descartadas propias desde Firebase (evita que se borren al recibir updates)
+    const myFlippedKey = myRole === 'p1' ? 'flippedP1' : 'flippedP2';
+    const savedFlipped = room[myFlippedKey];
+    if (Array.isArray(savedFlipped)) {
+      myFlipped = new Set(savedFlipped);
+      // Re-aplicar visualmente al tablero
+      document.querySelectorAll('#board-online .char-card').forEach(card => {
+        if (myFlipped.has(card.dataset.name)) {
+          card.classList.add('flipped');
+        } else {
+          card.classList.remove('flipped');
+        }
+      });
+    }
 
     // Comprobar victoria
     if (room.winner) {
@@ -823,7 +835,7 @@ function toggleCard(card, playerNum) {
 // =============================================
 //  TOGGLE CARTAS — Online
 // =============================================
-function toggleCardOnline(card) {
+async function toggleCardOnline(card) {
   // Siempre se puede marcar/desmarcar cartas, sea o no tu turno
   const name = card.dataset.name;
   if (myFlipped.has(name)) {
@@ -832,6 +844,19 @@ function toggleCardOnline(card) {
   } else {
     myFlipped.add(name);
     card.classList.add('flipped');
+  }
+
+  // Persistir en Firebase para no perder el estado al recibir updates
+  if (roomCode && window.FB) {
+    const { db, ref, update } = window.FB;
+    const flippedKey = myRole === 'p1' ? 'flippedP1' : 'flippedP2';
+    try {
+      await update(ref(db, `rooms/${roomCode}`), {
+        [flippedKey]: [...myFlipped]
+      });
+    } catch (err) {
+      console.warn('Error al guardar cartas descartadas:', err);
+    }
   }
 }
 
