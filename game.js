@@ -91,7 +91,7 @@ async function createRoom() {
 
     await set(roomRef, {
       p1Name: nameInput,
-      p2Name: null,
+      p2Name: '',
       status: 'waiting',    // waiting | config | playing | finished
       currentPlayer: 1,
       gameChars: null,
@@ -155,7 +155,7 @@ async function joinRoom() {
       statusEl.style.color = 'var(--red)';
       return;
     }
-    if (room.p2Name !== null) {
+    if (room.p2Name !== null && room.p2Name !== undefined && room.p2Name !== '') {
       statusEl.textContent = '❌ La sala ya está llena.';
       statusEl.style.color = 'var(--red)';
       return;
