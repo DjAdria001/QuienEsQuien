@@ -72,7 +72,7 @@ const JJK_CHARACTERS = [
   { name: "Hiromi Higuruma",        img: "https://a.storyblok.com/f/178900/960x540/70df109b3e/jujutsu-kaisen-s3-e9-still.jpg/m/filters:quality(95)format(webp)" },
   { name: "Hana Kurusu",            img: "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/01/jujutsu-kaisen-season-3-angel-copy.jpg?w=1200&h=628&fit=crop" },
   { name: "Hajime Kashimo",         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmeUmATb6eMkvG9KfEZzQekt5GTk2Z4Osu-Q&s" },
-  { name: "Ryu Ishigori",           img: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/9/9e/Ryu_Ishigori_manga.png/revision/latest/scale-to-width-down/250?cb=20231009183216" },
+  { name: "Ryu Ishigori",           img: "https://i.pinimg.com/736x/07/c8/c5/07c8c559b6ebb01b32bca8e4fc43d54c.jpg" },
   { name: "Dagon",                  img: "https://preview.redd.it/hot-take-dagon-is-in-my-top-ten-favorite-jujutsu-kaisen-v0-8o8gk5by5uqf1.jpeg?width=640&crop=smart&auto=webp&s=2a72b6539ba26649cc80b11f83c48c7a19d00a25" },
   { name: "Reggie Star",            img: "https://image.idn.media/post/20260314/upload_8b504d0e860e99a5c04256db0ad15042_763c8324-e983-488a-98b5-c0a95b0445c1.jpg" },
   { name: "Ui Ui",                  img: "https://gbaike-image.cdn.bcebos.com/b7003af33a87e950352a385a57634443fbf2b2111ecb/b7003af33a87e950352a385a57634443fbf2b2111ecb_1_1?x-bce-process=image/format,f_auto" },
