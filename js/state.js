@@ -5,6 +5,7 @@ let gameMode         = null;  // 'local' | 'online'
 let selectedTab      = 'csm';
 let selectedCsmChars = new Set(CSM_CHARACTERS.map(c => c.name));
 let selectedJjkChars = new Set(JJK_CHARACTERS.map(c => c.name));
+let selectedReChars  = new Set(RE_CHARACTERS.map(c => c.name));
 let gameChars        = [];
 let secretP1         = null;
 let secretP2         = null;

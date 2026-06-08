@@ -94,27 +94,17 @@
       <!-- Selector de categoría -->
       <div class="section-label">Categoría</div>
       <div class="category-tabs" style="margin-bottom: 1.5rem;">
-        <button class="tab-btn active" id="tab-csm" onclick="switchTab('csm')">
-          ⛓️ Chainsaw Man
-        </button>
-        <button class="tab-btn" id="tab-poke" onclick="switchTab('pokemon')">
-          🔴 Pokémon
-        </button>
-        <button class="tab-btn" id="tab-jjk" onclick="switchTab('jjk')">
-          ⚡ Jujutsu Kaisen
-        </button>
+        <button class="tab-btn active" id="tab-csm"  onclick="switchTab('csm')">⛓️ Chainsaw Man</button>
+        <button class="tab-btn"        id="tab-poke" onclick="switchTab('pokemon')">🔴 Pokémon</button>
+        <button class="tab-btn"        id="tab-jjk"  onclick="switchTab('jjk')">⚡ Jujutsu Kaisen</button>
+        <button class="tab-btn"        id="tab-re"   onclick="switchTab('residentevil')">🧟 Resident Evil</button>
       </div>
-      </div>
-      
 
       <!-- Panel Chainsaw Man -->
       <div id="panel-csm" class="filters-panel active">
         <div class="section-label">Personajes (mínimo 9)</div>
         <div class="csm-chars" id="csm-char-list"></div>
       </div>
-
-
-
 
       <!-- Panel Pokémon -->
       <div id="panel-pokemon" class="filters-panel">
@@ -157,10 +147,16 @@
         </div>
       </div>
 
-            <!--Panel Jujutsu Kaisen-->
+      <!-- Panel Jujutsu Kaisen -->
       <div id="panel-jjk" class="filters-panel">
         <div class="section-label">Personajes (mínimo 9)</div>
         <div class="jjk-chars" id="jjk-char-list"></div>
+      </div>
+
+      <!-- Panel Resident Evil -->
+      <div id="panel-residentevil" class="filters-panel">
+        <div class="section-label">Personajes (mínimo 9)</div>
+        <div class="re-chars" id="re-char-list"></div>
       </div>
 
       <!-- Nombres de jugadores (solo local) -->
@@ -181,13 +177,6 @@
       <button class="start-btn" id="start-btn" onclick="startGame()">¡JUGAR!</button>
       <div class="loading-msg" id="loading-msg"></div>
     </div>
-
-
-       <!-- Panel Resident Evil -->
-       <div id="panel-residentevil" class="filters-panel">
-        <div class="section-label">Personajes (mínimo 9)</div>
-        <div class="re-chars" id="re-char-list"></div>
-  </div>
 
 
   <!-- ==========================================

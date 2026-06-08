@@ -30,6 +30,15 @@ async function startGame() {
     gameChars = JJK_CHARACTERS.filter(c => selectedJjkChars.has(c.name));
     shuffle(gameChars);
 
+  } else if (selectedTab === 'residentevil') {
+    if (selectedReChars.size < 9) {
+      msg.textContent = '⚠️ Selecciona al menos 9 personajes';
+      msg.style.color = 'var(--red)';
+      return;
+    }
+    gameChars = RE_CHARACTERS.filter(c => selectedReChars.has(c.name));
+    shuffle(gameChars);
+
   } else {
     // Pokémon
     btn.disabled = true;
@@ -293,5 +302,6 @@ function playAgain() {
 document.addEventListener('DOMContentLoaded', () => {
   buildCsmList();
   buildJjkList();
+  buildReList();
   generateQuestionMarks();
 });
