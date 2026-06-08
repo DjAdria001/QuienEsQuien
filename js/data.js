@@ -95,7 +95,7 @@ const RE_CHARACTERS = [
   { name: "Leon S. Kennedy",  img: "https://i0.wp.com/www.gamerfocus.co/wp-content/uploads/2025/12/resident-evil-requiem-leon.jpg?resize=860%2C484&ssl=1" },
   { name: "Claire Redfield",  img: "https://i.pinimg.com/474x/da/d3/10/dad310c46252241e3514bd976bb86149.jpg" },
   { name: "Jill Valentine",   img: "https://imagenes.hobbyconsolas.com/files/image_640_360/uploads/imagenes/2023/04/25/690d68ae7f1a7.jpeg" },
-  { name: "Chris Redfield",   img: "https://i.blogs.es/7c5f53/image-11--compressed/500_333.jpeg" },
+  { name: "Chris Redfield",   img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW-V2Pmf2RK_98Jr0i4EF4aItaa7LocGwKWQ&s" },
   { name: "Ada Wong",         img: "https://i.blogs.es/361305/resident-evil-estas-fueron-la-influencias-de-capcom-para-crear-a-ada-wong/500_333.jpeg" },
   { name: "Albert Wesker",    img: "https://assets-prd.ignimgs.com/2022/06/06/pjimage-2022-06-06t165441-445-1654548897379.jpg" },
   { name: "Hunk",             img: "https://preview.redd.it/do-you-want-to-see-a-hunk-led-game-v0-mgdmm3r253vd1.jpeg?width=640&crop=smart&auto=webp&s=4bd194990def1025e71536de0529313b140e8507" },
