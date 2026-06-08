@@ -15,6 +15,7 @@ function selectMode(mode) {
 
 function goToModeSelect() {
   cancelOnlineListeners();
+  gameMode = null;
   showScreen('screen-mode');
 }
 
@@ -138,11 +139,11 @@ function listenForP2Join(code) {
 
     if (room.p2Name && room.status === 'config') {
       p2Name = room.p2Name;
-      off(roomRef, listener);
+      off(roomRef, 'value', listener);
       showOnlineSetupForP1();
     }
     if (room.status === 'finished' || room.status === 'abandoned') {
-      off(roomRef, listener);
+      off(roomRef, 'value', listener);
     }
   });
 
@@ -170,14 +171,14 @@ function listenForGameStart(code) {
 
   const listener = onValue(roomRef, (snapshot) => {
     if (!snapshot.exists()) {
-      off(roomRef, listener);
+      off(roomRef, 'value', listener);
       openModal('modal-disconnected');
       return;
     }
     const room = snapshot.val();
 
     if (room.status === 'playing' && room.gameChars) {
-      off(roomRef, listener);
+      off(roomRef, 'value', listener);
       gameChars  = room.gameChars;
       secretP1   = room.secretP1;
       secretP2   = room.secretP2;
@@ -188,7 +189,7 @@ function listenForGameStart(code) {
     }
 
     if (room.status === 'abandoned') {
-      off(roomRef, listener);
+      off(roomRef, 'value', listener);
       openModal('modal-disconnected');
     }
   });
@@ -212,7 +213,9 @@ async function initOnlineGameAsP1() {
   const { db, ref, update } = window.FB;
 
   secretP1 = gameChars[Math.floor(Math.random() * gameChars.length)];
-  secretP2 = gameChars[Math.floor(Math.random() * gameChars.length)];
+  do {
+    secretP2 = gameChars[Math.floor(Math.random() * gameChars.length)];
+  } while (secretP2.name === secretP1.name);
   mySecret = secretP1;
 
   await update(ref(db, `rooms/${roomCode}`), {
@@ -230,6 +233,8 @@ async function initOnlineGameAsP1() {
 
 // ─── Arrancar juego online (ambos jugadores) ─
 function startOnlineGame(code) {
+  if (gameStarted) return;
+  gameStarted   = true;
   myFlipped     = new Set();
   currentPlayer = 1;
 
@@ -256,6 +261,7 @@ function startOnlineGame(code) {
 function listenOnlineGameState(code) {
   const { db, ref, onValue, off } = window.FB;
   const stateRef = ref(db, `rooms/${code}`);
+  let firstFire  = true;
 
   const listener = onValue(stateRef, (snapshot) => {
     if (!snapshot.exists()) {
@@ -267,7 +273,13 @@ function listenOnlineGameState(code) {
     const prevPlayer = currentPlayer;
     currentPlayer    = room.currentPlayer || 1;
 
-    if (prevPlayer !== currentPlayer) {
+    // El primer disparo de onValue es el estado inicial al registrarse el listener.
+    // En ese momento el modal secreto puede estar abriéndose (setTimeout 400ms),
+    // así que no tocamos la UI de turno para no interferir.
+    if (firstFire) {
+      firstFire = false;
+    } else if (prevPlayer !== currentPlayer) {
+      // Solo actualizar cuando el turno cambia realmente
       updateTurnUI();
       if (isMyTurn()) {
         hideWaitingTurnBanner();
@@ -277,14 +289,14 @@ function listenOnlineGameState(code) {
     }
 
     if (room.winner) {
-      off(stateRef, listener);
+      off(stateRef, 'value', listener);
       const winnerName = room.winner === 'p1' ? p1Name : p2Name;
       const secret     = room.winner === 'p1' ? room.secretP2 : room.secretP1;
       showWin(room.winner === myRole ? 'yo' : 'rival', winnerName, secret);
     }
 
     if (room.status === 'abandoned') {
-      off(stateRef, listener);
+      off(stateRef, 'value', listener);
       openModal('modal-disconnected');
     }
   });
