@@ -139,11 +139,11 @@ function listenForP2Join(code) {
 
     if (room.p2Name && room.status === 'config') {
       p2Name = room.p2Name;
-      off(roomRef, listener);
+      off(roomRef, 'value', listener);
       showOnlineSetupForP1();
     }
     if (room.status === 'finished' || room.status === 'abandoned') {
-      off(roomRef, listener);
+      off(roomRef, 'value', listener);
     }
   });
 
@@ -171,14 +171,14 @@ function listenForGameStart(code) {
 
   const listener = onValue(roomRef, (snapshot) => {
     if (!snapshot.exists()) {
-      off(roomRef, listener);
+      off(roomRef, 'value', listener);
       openModal('modal-disconnected');
       return;
     }
     const room = snapshot.val();
 
     if (room.status === 'playing' && room.gameChars) {
-      off(roomRef, listener);
+      off(roomRef, 'value', listener);
       gameChars  = room.gameChars;
       secretP1   = room.secretP1;
       secretP2   = room.secretP2;
@@ -189,7 +189,7 @@ function listenForGameStart(code) {
     }
 
     if (room.status === 'abandoned') {
-      off(roomRef, listener);
+      off(roomRef, 'value', listener);
       openModal('modal-disconnected');
     }
   });
@@ -233,6 +233,8 @@ async function initOnlineGameAsP1() {
 
 // ─── Arrancar juego online (ambos jugadores) ─
 function startOnlineGame(code) {
+  if (gameStarted) return;
+  gameStarted   = true;
   myFlipped     = new Set();
   currentPlayer = 1;
 
@@ -287,14 +289,14 @@ function listenOnlineGameState(code) {
     }
 
     if (room.winner) {
-      off(stateRef, listener);
+      off(stateRef, 'value', listener);
       const winnerName = room.winner === 'p1' ? p1Name : p2Name;
       const secret     = room.winner === 'p1' ? room.secretP2 : room.secretP1;
       showWin(room.winner === myRole ? 'yo' : 'rival', winnerName, secret);
     }
 
     if (room.status === 'abandoned') {
-      off(stateRef, listener);
+      off(stateRef, 'value', listener);
       openModal('modal-disconnected');
     }
   });

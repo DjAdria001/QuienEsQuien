@@ -296,6 +296,7 @@ function goHome() {
   myRole        = null;
   mySecret      = null;
   gameMode      = null;
+  gameStarted   = false;
   currentPlayer = 1;
   flippedP1     = new Set();
   flippedP2     = new Set();
@@ -317,9 +318,10 @@ function goHome() {
 
 function playAgain() {
   cancelOnlineListeners();
-  roomCode  = null;
-  myRole    = null;
-  mySecret  = null;
+  roomCode      = null;
+  myRole        = null;
+  mySecret      = null;
+  gameStarted   = false;
   const secretBtn = document.getElementById('secret-btn-real');
   if (secretBtn) secretBtn.remove();
   document.getElementById('start-btn').disabled      = false;

@@ -34,7 +34,7 @@ function cancelOnlineListeners() {
   if (!window.FB) return;
   const { off } = window.FB;
   onlineListeners.forEach(({ ref: r, listener }) => {
-    try { off(r, listener); } catch {}
+    try { off(r, 'value', listener); } catch {}
   });
   onlineListeners = [];
 }

@@ -21,3 +21,4 @@ let myRole           = null;   // 'p1' | 'p2'
 let mySecret         = null;
 let myFlipped        = new Set();
 let onlineListeners  = [];     // para limpiar listeners al salir
+let gameStarted      = false;  // evita doble inicio online
