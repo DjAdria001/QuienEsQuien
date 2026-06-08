@@ -84,8 +84,10 @@ function initLocalGame() {
   flippedP1     = new Set();
   flippedP2     = new Set();
   currentPlayer = 1;
-  secretP1      = gameChars[Math.floor(Math.random() * gameChars.length)];
-  secretP2      = gameChars[Math.floor(Math.random() * gameChars.length)];
+  secretP1 = gameChars[Math.floor(Math.random() * gameChars.length)];
+  do {
+    secretP2 = gameChars[Math.floor(Math.random() * gameChars.length)];
+  } while (secretP2.name === secretP1.name);
 
   document.getElementById('boards-local').style.display  = '';
   document.getElementById('boards-online').style.display = 'none';
@@ -131,15 +133,36 @@ function endTurn() {
   } else {
     currentPlayer = currentPlayer === 1 ? 2 : 1;
     updateTurnUI();
+    showPassDeviceModal();
   }
+}
+
+function showPassDeviceModal() {
+  const name   = currentPlayer === 1 ? p1Name : p2Name;
+  const secret = currentPlayer === 1 ? secretP1 : secretP2;
+
+  document.getElementById('modal-secret-player').textContent = `${name}: ¡es tu turno! Recuerda tu personaje secreto.`;
+  document.getElementById('modal-secret-img').src            = secret.img;
+  document.getElementById('modal-secret-name').textContent   = secret.name;
+
+  const btn = document.getElementById('modal-secret-ok');
+  // Clonar para eliminar listeners acumulados
+  const newBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(newBtn, btn);
+  newBtn.onclick = () => closeModal('modal-secret');
+
+  openModal('modal-secret');
 }
 
 // ─── Adivinar ─────────────────────────────────
 function makeGuess() {
   if (gameMode === 'online' && !isMyTurn()) return;
 
-  const input = document.getElementById('guess-input').value.trim();
+  const input    = document.getElementById('guess-input').value.trim();
   if (!input) return;
+
+  const guessBtn = document.getElementById('guess-btn');
+  if (guessBtn) guessBtn.disabled = true;
 
   const secret  = currentPlayer === 1 ? secretP2 : secretP1;
   const correct = input.toLowerCase() === secret.name.toLowerCase();
@@ -157,6 +180,7 @@ function makeGuess() {
     document.getElementById('gr-msg').textContent   = `"${input}" no es el personaje secreto. ¡Turno al otro jugador!`;
     document.getElementById('gr-ok').onclick = () => {
       closeModal('modal-guess-result');
+      if (guessBtn) guessBtn.disabled = false;
       endTurn();
     };
     openModal('modal-guess-result');
@@ -172,9 +196,10 @@ function showSecretModalLocal() {
   document.getElementById('modal-secret-img').src            = secret.img;
   document.getElementById('modal-secret-name').textContent   = secret.name;
 
-  openModal('modal-secret');
-
-  document.getElementById('modal-secret-ok').onclick = () => {
+  const btn = document.getElementById('modal-secret-ok');
+  const newBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(newBtn, btn);
+  newBtn.onclick = () => {
     closeModal('modal-secret');
     if (currentPlayer === 1) {
       currentPlayer = 2;
@@ -185,6 +210,8 @@ function showSecretModalLocal() {
       updateTurnUI();
     }
   };
+
+  openModal('modal-secret');
 }
 
 // ─── Modal personaje secreto — Online ────────
@@ -196,12 +223,15 @@ function showSecretModalOnline() {
   document.getElementById('modal-secret-img').src            = secret.img;
   document.getElementById('modal-secret-name').textContent   = secret.name;
 
-  openModal('modal-secret');
-
-  document.getElementById('modal-secret-ok').onclick = () => {
+  const btn    = document.getElementById('modal-secret-ok');
+  const newBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(newBtn, btn);
+  newBtn.onclick = () => {
     closeModal('modal-secret');
     updateTurnUI();
   };
+
+  openModal('modal-secret');
 }
 
 function peekSecret() {
@@ -212,7 +242,12 @@ function peekSecret() {
   document.getElementById('modal-secret-player').textContent = 'Tu personaje secreto:';
   document.getElementById('modal-secret-img').src            = secret.img;
   document.getElementById('modal-secret-name').textContent   = secret.name;
-  document.getElementById('modal-secret-ok').onclick         = () => closeModal('modal-secret');
+
+  const btn = document.getElementById('modal-secret-ok');
+  const newBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(newBtn, btn);
+  newBtn.onclick = () => closeModal('modal-secret');
+
   openModal('modal-secret');
 }
 
@@ -261,6 +296,7 @@ function goHome() {
   myRole        = null;
   mySecret      = null;
   gameMode      = null;
+  gameStarted   = false;
   currentPlayer = 1;
   flippedP1     = new Set();
   flippedP2     = new Set();
@@ -282,9 +318,10 @@ function goHome() {
 
 function playAgain() {
   cancelOnlineListeners();
-  roomCode  = null;
-  myRole    = null;
-  mySecret  = null;
+  roomCode      = null;
+  myRole        = null;
+  mySecret      = null;
+  gameStarted   = false;
   const secretBtn = document.getElementById('secret-btn-real');
   if (secretBtn) secretBtn.remove();
   document.getElementById('start-btn').disabled      = false;
