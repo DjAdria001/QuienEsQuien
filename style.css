@@ -504,25 +504,26 @@ input[type="text"]:focus { border-color: var(--gold); }
 
 .board-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(clamp(60px, 8vw, 100px), 1fr));
-  gap: clamp(4px, 0.5vw, 8px);
-  padding: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(80px, 10vw, 130px), 1fr));
+  gap: clamp(5px, 0.6vw, 10px);
+  padding: 10px;
   overflow-y: auto;
   flex: 1;
-  align-content: start;
+  align-content: center;
+  justify-content: center;
 }
 
 /* Adjust card min size based on number of cards (set via JS on the grid element) */
 .board-grid[data-count="16"] {
-  grid-template-columns: repeat(auto-fill, minmax(clamp(70px, 9vw, 110px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(clamp(90px, 11vw, 140px), 1fr));
 }
 .board-grid[data-count="20"] {
-  grid-template-columns: repeat(auto-fill, minmax(clamp(62px, 8vw, 96px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(clamp(82px, 10vw, 126px), 1fr));
 }
 .board-grid[data-count="24"],
 .board-grid[data-count="25"],
 .board-grid[data-count="large"] {
-  grid-template-columns: repeat(auto-fill, minmax(clamp(55px, 7vw, 88px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(clamp(72px, 9vw, 112px), 1fr));
 }
 
 /* ===== CHARACTER CARDS ===== */
@@ -947,3 +948,22 @@ input[type="text"]:focus { border-color: var(--gold); }
   pointer-events: none;
 }
 
+
+/* ===== CHIPS DE NOMBRES USADOS (Online) ===== */
+.name-chip {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid var(--card-border);
+  color: var(--white);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  font-family: 'Nunito', sans-serif;
+  white-space: nowrap;
+}
+.name-chip:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: var(--gold);
+  color: var(--gold);
+}

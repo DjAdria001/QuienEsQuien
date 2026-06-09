@@ -19,6 +19,16 @@ function showScreen(id) {
 function openModal(id)  { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
+// Cerrar modal-secret al clicar en el overlay (fuera del contenido)
+document.addEventListener('DOMContentLoaded', () => {
+  const secretOverlay = document.getElementById('modal-secret');
+  if (secretOverlay) {
+    secretOverlay.addEventListener('click', (e) => {
+      if (e.target === secretOverlay) closeModal('modal-secret');
+    });
+  }
+});
+
 function generateRoomCode() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   let code = '';

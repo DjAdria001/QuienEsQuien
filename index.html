@@ -44,7 +44,9 @@
 
       <div id="online-name-section">
         <div class="section-label">Tu nombre</div>
-        <input type="text" id="online-player-name" value="Jugador" maxlength="16" style="margin-bottom:1.5rem;">
+        <input type="text" id="online-player-name" value="Jugador" maxlength="16" style="margin-bottom:0.5rem;" list="used-names-list" autocomplete="off">
+        <datalist id="used-names-list"></datalist>
+        <div id="used-names-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;min-height:0;"></div>
       </div>
 
       <div class="online-options">

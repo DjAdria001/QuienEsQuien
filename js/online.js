@@ -2,6 +2,31 @@
 //  ONLINE — Modo multijugador online (Firebase)
 // =============================================
 
+// ─── Registro de nombres usados ──────────────
+const USED_NAMES_KEY = 'quienEsQuien_usedNames';
+
+function getUsedNames() {
+  try { return JSON.parse(localStorage.getItem(USED_NAMES_KEY) || '[]'); } catch { return []; }
+}
+
+function saveUsedName(name) {
+  if (!name || name.length < 2) return;
+  let names = getUsedNames();
+  names = [name, ...names.filter(n => n !== name)].slice(0, 8);
+  localStorage.setItem(USED_NAMES_KEY, JSON.stringify(names));
+}
+
+function renderUsedNames() {
+  const datalist = document.getElementById('used-names-list');
+  const chips    = document.getElementById('used-names-chips');
+  if (!datalist || !chips) return;
+  const names = getUsedNames();
+  datalist.innerHTML = names.map(n => `<option value="${escapeHtml(n)}">`).join('');
+  chips.innerHTML = names.map(n =>
+    `<button type="button" class="name-chip" onclick="document.getElementById('online-player-name').value='${escapeHtml(n)}'">${escapeHtml(n)}</button>`
+  ).join('');
+}
+
 // ─── Selección de modo ───────────────────────
 function selectMode(mode) {
   gameMode = mode;
@@ -9,6 +34,7 @@ function selectMode(mode) {
     document.getElementById('player-names-section').style.display = '';
     showScreen('screen-setup');
   } else {
+    renderUsedNames();
     showScreen('screen-online-lobby');
   }
 }
@@ -34,6 +60,8 @@ async function createRoom() {
   roomCode   = code;
   myRole     = 'p1';
   p1Name     = nameInput;
+
+  saveUsedName(nameInput);
 
   statusEl.textContent = '⏳ Creando sala...';
 
@@ -114,6 +142,8 @@ async function joinRoom() {
     myRole   = 'p2';
     p2Name   = nameInput;
     p1Name   = room.p1Name;
+
+    saveUsedName(nameInput);
 
     await update(roomRef, { p2Name: nameInput, status: 'config' });
 
