@@ -92,7 +92,6 @@ const GEN_RANGES = {
 //  DATOS — Personajes de Resident Evil
 // =============================================
 const RE_CHARACTERS = [
-[
   { name: "Leon S. Kennedy",      img: "https://i0.wp.com/www.gamerfocus.co/wp-content/uploads/2025/12/resident-evil-requiem-leon.jpg?resize=860%2C484&ssl=1" },
   { name: "Claire Redfield",      img: "https://i.pinimg.com/474x/da/d3/10/dad310c46252241e3514bd976bb86149.jpg" },
   { name: "Chris Redfield",       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW-V2Pmf2RK_98Jr0i4EF4aItaa7LocGwKWQ&s" },
@@ -133,6 +132,81 @@ const RE_CHARACTERS = [
   { name: "Moreau",               img: "https://static.wikia.nocookie.net/absolutehorror/images/5/53/Salvatore-moreau.png/revision/latest?cb=20211028132800" },
   { name: "Miranda",              img: "https://preview.redd.it/so-how-strong-is-mother-miranda-compared-to-other-big-bads-v0-422wy32i8ung1.jpeg?auto=webp&s=435487049da21984f03e585a020c8676f693b04b" },
   { name: "Rose Winters",         img: "https://i.redd.it/ra9w8nsbv8tb1.jpg" }
-]
 ];
 
+// =============================================
+//  DATOS — Personajes de Terror
+// =============================================
+const HORROR_CHARACTERS = [
+  { name: "Pennywise",            img: "https://i.insider.com/57b3755add089566768b481e?width=700" },
+  { name: "Freddy Krueger",       img: "https://hips.hearstapps.com/hmg-prod/images/elm-street-anniverary-cover-1629985780.jpg?crop=1xw:1xh;center,top&resize=1200:*" },
+  { name: "Jason Voorhees",       img: "https://i.blogs.es/077bc7/040515-jason/450_1000.webp" },
+  { name: "Michael Myers",        img: "https://static.wikia.nocookie.net/villanos-del-cine-de-terror/images/4/43/Myers.jpg/revision/latest/thumbnail/width/360/height/360?cb=20161007175100&path-prefix=es" },
+  { name: "Leatherface",          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN1oP8RXubSiIzp1aYx8afOCanRIV6e_vFyw&s" },
+  { name: "Chucky",               img: "https://static.wikia.nocookie.net/chuckychildsplay/images/a/a8/New_Chucky.png/revision/latest?cb=20210511191612" },
+  { name: "Ghostface",            img: "https://www.clarin.com/2022/01/12/PLgDxKqeH_1200x0__1.jpg" },
+  { name: "Pinhead",              img: "https://img.asmedia.epimg.net/resizer/v2/WGYS7CCYTJMVTBCHW2CVBBYOFQ.jpg?auth=0912ecc67198ff5d87a4a92bc3ee207636304cc6e209d93abc6ca6451d672972&width=1472&height=828&smart=true" },
+  { name: "Samara Morgan",        img: "https://static.wikia.nocookie.net/thering/images/1/1e/Samara_Morgan.v1.webp/revision/latest?cb=20221030003832" },
+  { name: "Jigsaw / John Kramer", img: "https://imagenes.hobbyconsolas.com/files/image_640_360/uploads/imagenes/2023/04/25/6901226474fe4.jpeg" },
+  { name: "Art the Clown",        img: "https://imagenes.hobbyconsolas.com/files/image_640_360/uploads/imagenes/2023/04/25/69016a9d1d657.jpeg" },
+  { name: "Xenomorph",            img: "https://preview.redd.it/our-best-look-at-the-alien-earth-xenomorph-yet-v0-mmqfuoiz1j6f1.jpeg?width=1280&format=pjpg&auto=webp&s=083cf79d99892965c0c40e291cea9a1d81069b7f" },
+  { name: "Annabelle",            img: "https://hips.hearstapps.com/hmg-prod/images/annabelle-vuelve-a-casa-1562910689.jpg?crop=0.7496296296296295xw:1xh;center,top&resize=1200:*" },
+  { name: "Beetlejuice",          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM3EOEkMRby766yW--5ifnVLOf_pyCUA8JKw&s" },
+  { name: "Predator",             img: "https://imagenes.hobbyconsolas.com/files/image_640_360/uploads/imagenes/2023/04/25/6901ceb849f36.jpeg" },
+  { name: "Freddy Fazbear",       img: "https://static.wikia.nocookie.net/mis-historias-de-freddy-fazbears-pizza/images/5/53/FNaF_-_Freddy_Icono.png/revision/latest/thumbnail/width/360/height/450?cb=20161211022012&path-prefix=es" },
+  { name: "Slenderman",           img: "https://i.scdn.co/image/ab67616d00001e025f94ef3c750c318c12e365bf" },
+  { name: "Ash Williams",         img: "https://media.vandalsports.com/master/5-2024/202451583058_1.jpg" },
+  { name: "Hannibal Lecter",      img: "https://album.mediaset.es/eimg/2022/08/24/hannibal-lecter_30d7.jpg?w=1024" },
+  { name: "Tomie",                img: "https://i.blogs.es/f9eb3d/tomie/500_333.jpeg" },
+  { name: "The Nun",              img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdWLt9lbDuQSqt5yG9X_FwZocsSgzod7B9CA&s" },
+  { name: "Springtrap",           img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuFLljANjewW5YsU6gozcUXIeEbKowcULpLw&s" },
+  { name: "Jack Torrance",        img: "https://static.wikia.nocookie.net/ficcion-sin-limites/images/0/0f/Jack-torrance-el-resplandor.jpg/revision/latest?cb=20240629100504&path-prefix=es" },
+];
+
+// =============================================
+//  DATOS — Personajes de Dead by Daylight
+// =============================================
+const DBD_CHARACTERS = [
+  { name: "The Trapper",        img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/8/81/K01_TheTrapper_Portrait.png/revision/latest?cb=20240517102906" },
+  { name: "The Wraith",         img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/c/c2/K02_TheWraith_Portrait.png/revision/latest?cb=20240517102909" },
+  { name: "The Hillbilly",      img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/2/28/K03_TheHillbilly_Portrait.png/revision/latest" },
+  { name: "The Nurse",          img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/8/81/K04_TheNurse_Portrait.png/revision/latest" },
+  { name: "The Shape",          img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/9/9d/K06_TheShape_Portrait.png/revision/latest" },
+  { name: "The Hag",            img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/e/e4/K05_TheHag_Portrait.png/revision/latest" },
+  { name: "The Doctor",         img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/c/cd/K07_TheDoctor_Portrait.png/revision/latest" },
+  { name: "The Huntress",       img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/5/5c/K08_TheHuntress_Portrait.png/revision/latest" },
+  { name: "The Cannibal",       img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/8/82/K09_TheCannibal_Portrait.png/revision/latest" },
+  { name: "The Nightmare",      img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/8/8d/K10_TheNightmare_Portrait.png/revision/latest" },
+  { name: "The Pig",            img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/3/3d/K11_ThePig_Portrait.png/revision/latest" },
+  { name: "The Clown",          img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/3/39/K12_TheClown_Portrait.png/revision/latest" },
+  { name: "The Spirit",         img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/4/43/K13_TheSpirit_Portrait.png/revision/latest" },
+  { name: "The Legion",         img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/4/4e/K14_TheLegion_Portrait.png/revision/latest" },
+  { name: "The Plague",         img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/7/75/K15_ThePlague_Portrait.png/revision/latest" },
+  { name: "The Ghost Face",     img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/e/e4/K16_TheGhostface_Portrait.png/revision/latest" },
+  { name: "The Demogorgon",     img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/8/8a/K17_TheDemogorgon_Portrait.png/revision/latest" },
+  { name: "The Oni",            img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/5/53/K18_TheOni_Portrait.png/revision/latest" },
+  { name: "The Deathslinger",   img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/9/94/K19_TheDeathslinger_Portrait.png/revision/latest" },
+  { name: "The Executioner",    img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/8/8d/K20_TheExecutioner_Portrait.png/revision/latest" },
+  { name: "The Blight",         img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/c/c5/K21_TheBlight_Portrait.png/revision/latest" },
+  { name: "The Twins",          img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/6/6a/K22_TheTwins_Portrait.png/revision/latest" },
+  { name: "The Trickster",      img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/6/6e/K23_TheTrickster_Portrait.png/revision/latest" },
+  { name: "The Nemesis",        img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/e/e3/K24_TheNemesis_Portrait.png/revision/latest" },
+  { name: "The Cenobite",       img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/6/61/K25_TheCenobite_Portrait.png/revision/latest" },
+  { name: "The Artist",         img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/6/69/K26_TheArtist_Portrait.png/revision/latest" },
+  { name: "The Onryō",          img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/2/2d/K27_TheOnryo_Portrait.png/revision/latest" },
+  { name: "The Dredge",         img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/6/61/K28_TheDredge_Portrait.png/revision/latest" },
+  { name: "The Mastermind",     img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/8/8f/K29_TheMasterMind_Portrait.png/revision/latest" },
+  { name: "The Knight",         img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/0/02/K30_TheKnight_Portrait.png/revision/latest" },
+  { name: "The Skull Merchant", img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/5/54/K31_TheSkullMerchant_Portrait.png/revision/latest" },
+  { name: "The Singularity",    img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/0/03/K32_TheSingularity_Portrait.png/revision/latest" },
+  { name: "The Xenomorph",      img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/7/72/K33_TheXenomorph_Portrait.png/revision/latest" },
+  { name: "The Good Guy",       img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/d/d5/K34_TheYerkes_Portrait.png/revision/latest" },
+  { name: "The Unknown",        img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/e/e6/K35_TheUnknown_Portrait.png/revision/latest" },
+  { name: "The Lich",           img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/e/e5/K36_TheLich_Portrait.png/revision/latest" },
+  { name: "The Dark Lord",      img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/e/e9/K37_TheDracula_Portrait.png/revision/latest" },
+  { name: "The Houndmaster",    img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/9/9d/K38_TheHoundmaster_Portrait.png/revision/latest" },
+  { name: "The Ghoul",          img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/b/b3/K39_TheGhoul_Portrait.png/revision/latest" },
+  { name: "The Animatronic",    img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/e/e1/K40_TheAnimatronic_Portrait.png/revision/latest" },
+  { name: "The Krasue",         img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/2/20/K41_TheKrasue_Portrait.png/revision/latest" },
+  { name: "The Slasher",        img: "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/c/c4/K42_TheSlasher_Portrait.png/revision/latest" }
+];

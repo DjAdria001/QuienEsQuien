@@ -39,6 +39,24 @@ async function startGame() {
     gameChars = RE_CHARACTERS.filter(c => selectedReChars.has(c.name));
     shuffle(gameChars);
 
+  } else if (selectedTab === 'horror') {
+    if (selectedHorrorChars.size < 9) {
+      msg.textContent = '⚠️ Selecciona al menos 9 personajes';
+      msg.style.color = 'var(--red)';
+      return;
+    }
+    gameChars = HORROR_CHARACTERS.filter(c => selectedHorrorChars.has(c.name));
+    shuffle(gameChars);
+
+  } else if (selectedTab === 'dbd') {
+    if (selectedDbdChars.size < 9) {
+      msg.textContent = '⚠️ Selecciona al menos 9 personajes';
+      msg.style.color = 'var(--red)';
+      return;
+    }
+    gameChars = DBD_CHARACTERS.filter(c => selectedDbdChars.has(c.name));
+    shuffle(gameChars);
+
   } else {
     // Pokémon
     btn.disabled = true;
@@ -340,5 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildCsmList();
   buildJjkList();
   buildReList();
+  buildHorrorList();
+  buildDbdList();
   generateQuestionMarks();
 });
