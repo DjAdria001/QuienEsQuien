@@ -510,37 +510,26 @@ input[type="text"]:focus { border-color: var(--gold); }
 
 .board-grid {
   display: grid;
-  gap: clamp(2px, 0.3vw, 5px);
-  padding: 5px;
+  gap: clamp(3px, 0.4vw, 6px);
+  padding: 8px;
   overflow: hidden;
   flex: 1;
   min-height: 0;
-  align-content: stretch;
-  /* Columnas y filas se calculan según data-count */
+  align-content: center;
+  justify-content: center;
   grid-template-columns: repeat(var(--cols, 4), 1fr);
-  grid-template-rows: repeat(var(--rows, 4), 1fr);
 }
 
 /* 16 cartas → 4×4 */
-.board-grid[data-count="16"] {
-  --cols: 4; --rows: 4;
-}
+.board-grid[data-count="16"] { --cols: 4; }
 /* 20 cartas → 5×4 */
-.board-grid[data-count="20"] {
-  --cols: 5; --rows: 4;
-}
+.board-grid[data-count="20"] { --cols: 5; }
 /* 24 cartas → 6×4 */
-.board-grid[data-count="24"] {
-  --cols: 6; --rows: 4;
-}
+.board-grid[data-count="24"] { --cols: 6; }
 /* 25 cartas → 5×5 */
-.board-grid[data-count="25"] {
-  --cols: 5; --rows: 5;
-}
-/* >25 → 6×5 */
-.board-grid[data-count="large"] {
-  --cols: 6; --rows: 5;
-}
+.board-grid[data-count="25"] { --cols: 5; }
+/* >25 → 6 cols */
+.board-grid[data-count="large"] { --cols: 6; }
 
 /* ===== CHARACTER CARDS ===== */
 .char-card {

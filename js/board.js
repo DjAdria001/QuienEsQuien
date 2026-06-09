@@ -3,7 +3,6 @@
 // =============================================
 
 function getBoardLayout(count) {
-  // Returns { cols, rows, dataCount } for a given card count
   if (count <= 16) return { cols: 4, rows: 4, dataCount: '16' };
   if (count <= 20) return { cols: 5, rows: 4, dataCount: '20' };
   if (count <= 24) return { cols: 6, rows: 4, dataCount: '24' };
@@ -15,7 +14,24 @@ function applyBoardLayout(el, count) {
   const { cols, rows, dataCount } = getBoardLayout(count);
   el.dataset.count = dataCount;
   el.style.setProperty('--cols', cols);
-  el.style.setProperty('--rows', rows);
+
+  // After next paint, measure available height and shrink card width if rows overflow
+  requestAnimationFrame(() => {
+    const gap     = 6;
+    const padding = 16; // 8px each side
+    const nameH   = 22; // approx card-name height px
+    const availH  = el.clientHeight - padding - (rows - 1) * gap;
+    const availW  = el.clientWidth  - padding - (cols - 1) * gap;
+
+    // Each card: square image + name label. Card height = cardW + nameH
+    // rows * (cardW + nameH) <= availH  →  cardW <= (availH/rows) - nameH
+    const maxByHeight = Math.floor(availH / rows) - nameH;
+    const maxByWidth  = Math.floor(availW / cols);
+    const cardW       = Math.max(36, Math.min(maxByHeight, maxByWidth));
+
+    el.style.setProperty('--cols', cols);
+    el.style.gridTemplateColumns = `repeat(${cols}, ${cardW}px)`;
+  });
 }
 
 function buildBoard(boardId, playerNum) {
