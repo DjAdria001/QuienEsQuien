@@ -2,11 +2,26 @@
 //  TABLERO — Construcción y manejo de cartas
 // =============================================
 
+function getBoardLayout(count) {
+  // Returns { cols, rows, dataCount } for a given card count
+  if (count <= 16) return { cols: 4, rows: 4, dataCount: '16' };
+  if (count <= 20) return { cols: 5, rows: 4, dataCount: '20' };
+  if (count <= 24) return { cols: 6, rows: 4, dataCount: '24' };
+  if (count === 25) return { cols: 5, rows: 5, dataCount: '25' };
+  return { cols: 6, rows: Math.ceil(count / 6), dataCount: 'large' };
+}
+
+function applyBoardLayout(el, count) {
+  const { cols, rows, dataCount } = getBoardLayout(count);
+  el.dataset.count = dataCount;
+  el.style.setProperty('--cols', cols);
+  el.style.setProperty('--rows', rows);
+}
+
 function buildBoard(boardId, playerNum) {
   const el = document.getElementById(boardId);
   el.innerHTML = '';
-  const count = gameChars.length;
-  el.dataset.count = count <= 16 ? '16' : count <= 20 ? '20' : count <= 24 ? '24' : 'large';
+  applyBoardLayout(el, gameChars.length);
   gameChars.forEach(c => {
     el.appendChild(createCard(c, playerNum, 'local'));
   });
@@ -15,8 +30,7 @@ function buildBoard(boardId, playerNum) {
 function buildOnlineBoard() {
   const el = document.getElementById('board-online');
   el.innerHTML = '';
-  const count = gameChars.length;
-  el.dataset.count = count <= 16 ? '16' : count <= 20 ? '20' : count <= 24 ? '24' : 'large';
+  applyBoardLayout(el, gameChars.length);
   const myPlayerNum = myRole === 'p1' ? 1 : 2;
   gameChars.forEach(c => {
     el.appendChild(createCard(c, myPlayerNum, 'online'));
