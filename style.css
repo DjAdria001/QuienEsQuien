@@ -566,12 +566,14 @@ input[type="text"]:focus { border-color: var(--gold); }
 .char-card.flipped .card-name { text-decoration: line-through; color: #555; }
 
 .card-img-wrap {
-  flex: 1;
   overflow: hidden;
   background: #0d1830;
   display: flex;
   align-items: center;
   justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  flex-shrink: 0;
 }
 .card-img-wrap img {
   width: 100%;
