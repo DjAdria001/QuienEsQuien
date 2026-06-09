@@ -20,6 +20,7 @@ body {
   background: var(--darker);
   color: var(--white);
   min-height: 100vh;
+  overflow: hidden;
 }
 
 /* ===== SCREENS ===== */
@@ -396,13 +397,16 @@ input[type="text"]:focus { border-color: var(--gold); }
 #screen-game {
   flex-direction: column;
   background: var(--darker);
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .game-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1rem;
   background: var(--card-bg);
   border-bottom: 1px solid var(--card-border);
   gap: 1rem;
@@ -471,6 +475,7 @@ input[type="text"]:focus { border-color: var(--gold); }
   display: flex;
   flex: 1;
   overflow: hidden;
+  min-height: 0;
 }
 
 .board-section {
@@ -478,6 +483,7 @@ input[type="text"]:focus { border-color: var(--gold); }
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-height: 0;
   border-right: 1px solid var(--card-border);
 }
 .board-section:last-child { border-right: none; }
@@ -504,12 +510,12 @@ input[type="text"]:focus { border-color: var(--gold); }
 
 .board-grid {
   display: grid;
-  gap: clamp(3px, 0.4vw, 7px);
-  padding: 8px;
+  gap: clamp(2px, 0.3vw, 5px);
+  padding: 5px;
   overflow: hidden;
   flex: 1;
-  align-content: center;
-  justify-content: center;
+  min-height: 0;
+  align-content: stretch;
   /* Columnas y filas se calculan según data-count */
   grid-template-columns: repeat(var(--cols, 4), 1fr);
   grid-template-rows: repeat(var(--rows, 4), 1fr);
@@ -581,13 +587,14 @@ input[type="text"]:focus { border-color: var(--gold); }
 }
 
 .card-name {
-  font-size: 0.65rem;
+  font-size: clamp(0.45rem, 0.9vw, 0.65rem);
   font-weight: 700;
   text-align: center;
-  padding: 5px 4px;
-  line-height: 1.2;
+  padding: 3px 2px;
+  line-height: 1.1;
   color: var(--white);
   background: rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
 }
 
 .flipped-x {
@@ -699,8 +706,8 @@ input[type="text"]:focus { border-color: var(--gold); }
 .guess-bar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
+  gap: 8px;
+  padding: 6px 10px;
   background: var(--card-bg);
   border-top: 1px solid var(--card-border);
   flex-shrink: 0;
