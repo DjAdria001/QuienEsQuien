@@ -139,7 +139,7 @@ function endTurn() {
 
 function showPassDeviceModal() {
   const name   = currentPlayer === 1 ? p1Name : p2Name;
-  const secret = currentPlayer === 1 ? secretP1 : secretP2;
+  //const secret = currentPlayer === 1 ? secretP1 : secretP2;
 
   document.getElementById('modal-secret-player').textContent = `${name}: ¡es tu turno! Recuerda tu personaje secreto.`;
   document.getElementById('modal-secret-img').src            = secret.img;
