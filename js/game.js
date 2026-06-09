@@ -104,7 +104,7 @@ function initLocalGame() {
   updateTurnUI();
 
   showScreen('screen-game');
-  setTimeout(() => showSecretModalLocal(), 400);
+  // setTimeout(() => showSecretModalLocal(), 400);
 }
 
 // ─── Turno ────────────────────────────────────
