@@ -491,25 +491,10 @@ input[type="text"]:focus { border-color: var(--gold); }
 /* Online: tablero ocupa más espacio */
 .online-single-board {
   flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 #board-online {
-  overflow: visible;
-  height: auto;
-  align-content: start;
-  /* Cards stretch to fill width; height follows aspect-ratio of image */
-  align-items: stretch;
-}
-#board-online .char-card {
-  width: 100%;
-}
-#board-online .card-img-wrap {
-  aspect-ratio: 1 / 1;
-  width: 100%;
-}
-#board-online .card-name {
-  font-size: clamp(0.5rem, 1vw, 0.75rem);
+  padding: 0;
+  gap: clamp(2px, 0.3vw, 4px);
 }
 
 .board-label {
@@ -529,8 +514,8 @@ input[type="text"]:focus { border-color: var(--gold); }
 
 .board-grid {
   display: grid;
-  gap: clamp(3px, 0.4vw, 6px);
-  padding: 8px;
+  gap: clamp(2px, 0.3vw, 4px);
+  padding: 0;
   overflow: hidden;
   flex: 1;
   min-height: 0;

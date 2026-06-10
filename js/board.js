@@ -27,8 +27,8 @@ function applyBoardLayout(el, count) {
 
     const style   = getComputedStyle(el);
     const gap     = parseFloat(style.gap) || 5;
-    const padX    = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight) || 16;
-    const padY    = parseFloat(style.paddingTop)  + parseFloat(style.paddingBottom) || 16;
+    const padX    = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight) || 0;
+    const padY    = parseFloat(style.paddingTop)  + parseFloat(style.paddingBottom) || 0;
 
     const availW  = el.clientWidth  - padX - (cols - 1) * gap;
     const availH  = el.clientHeight - padY - (rows - 1) * gap;
@@ -38,14 +38,8 @@ function applyBoardLayout(el, count) {
     // card width from width constraint
     const maxByW  = Math.floor(availW / cols);
 
-    // Online single-board: use 1fr so cards fill full width naturally
-    const isOnline = el.id === 'board-online';
-    if (isOnline) {
-      el.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-    } else {
-      const cardW = Math.max(30, Math.min(maxByH, maxByW));
-      el.style.gridTemplateColumns = `repeat(${cols}, ${cardW}px)`;
-    }
+    const cardW = Math.max(30, Math.min(maxByH, maxByW));
+    el.style.gridTemplateColumns = `repeat(${cols}, ${cardW}px)`;
   });
 }
 
