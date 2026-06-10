@@ -102,6 +102,7 @@ function initLocalGame() {
   flippedP1     = new Set();
   flippedP2     = new Set();
   currentPlayer = 1;
+  turnCount     = 0;
   secretP1 = gameChars[Math.floor(Math.random() * gameChars.length)];
   do {
     secretP2 = gameChars[Math.floor(Math.random() * gameChars.length)];
@@ -135,6 +136,9 @@ function updateTurnUI() {
   document.getElementById('guess-input').value       = '';
   document.getElementById('guess-input').placeholder = `¿Cuál es el personaje de ${rivalName}?`;
 
+  const counterEl = document.getElementById('turn-counter');
+  if (counterEl) counterEl.textContent = `Turno ${turnCount}`;
+
   if (gameMode === 'online') {
     if (isMyTurn()) {
       hideWaitingTurnBanner();
@@ -150,6 +154,7 @@ function endTurn() {
     endTurnOnline();
   } else {
     currentPlayer = currentPlayer === 1 ? 2 : 1;
+    turnCount++;
     updateTurnUI();
     showPassDeviceModal();
   }
@@ -287,6 +292,8 @@ function showWin(who, winnerName, secret) {
   document.getElementById('win-subtitle').textContent    = 'Adivinó el personaje secreto del rival';
   document.getElementById('win-secret-img').src          = secret.img;
   document.getElementById('win-secret-name').textContent = secret.name;
+  const turnsEl = document.getElementById('win-turns');
+  if (turnsEl) turnsEl.textContent = `Partida terminada en ${turnCount} turno${turnCount !== 1 ? 's' : ''}`;
   showScreen('screen-win');
   cancelOnlineListeners();
 }
@@ -316,6 +323,7 @@ function goHome() {
   gameMode      = null;
   gameStarted   = false;
   currentPlayer = 1;
+  turnCount     = 0;
   flippedP1     = new Set();
   flippedP2     = new Set();
   myFlipped     = new Set();
@@ -340,6 +348,7 @@ function playAgain() {
   myRole        = null;
   mySecret      = null;
   gameStarted   = false;
+  turnCount     = 0;
   const secretBtn = document.getElementById('secret-btn-real');
   if (secretBtn) secretBtn.remove();
   document.getElementById('start-btn').disabled      = false;

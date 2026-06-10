@@ -72,3 +72,48 @@ function generateQuestionMarks() {
     container.appendChild(el);
   }
 }
+
+function copyRoomCode() {
+  const code = document.getElementById('room-code-display').textContent;
+  if (!code || code === '----') return;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.querySelector('.btn-copy-code');
+    if (!btn) return;
+    const orig = btn.textContent;
+    btn.textContent = '✅ ¡Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+  }).catch(() => {
+    // fallback para entornos sin clipboard API
+    const ta = document.createElement('textarea');
+    ta.value = code;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+
+async function pasteRoomCode() {
+  try {
+    const text = await navigator.clipboard.readText();
+    const cleaned = text.trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+    if (cleaned) {
+      document.getElementById('room-code-input').value = cleaned;
+      const btn = document.querySelector('.btn-paste-code');
+      if (btn) {
+        const orig = btn.textContent;
+        btn.textContent = '✅';
+        setTimeout(() => { btn.textContent = orig; }, 1500);
+      }
+    }
+  } catch {
+    // Si no hay permiso de portapapeles, no hacemos nada silenciosamente
+    const btn = document.querySelector('.btn-paste-code');
+    if (btn) {
+      const orig = btn.textContent;
+      btn.textContent = '⚠️';
+      setTimeout(() => { btn.textContent = orig; }, 1500);
+    }
+  }
+}

@@ -102,9 +102,15 @@ function toggleCard(card, playerNum) {
   if (flipped.has(name)) {
     flipped.delete(name);
     card.classList.remove('flipped');
+    card.classList.add('card-flip-in');
+    card.addEventListener('animationend', () => card.classList.remove('card-flip-in'), { once: true });
   } else {
     flipped.add(name);
-    card.classList.add('flipped');
+    card.classList.add('card-flip-out');
+    card.addEventListener('animationend', () => {
+      card.classList.remove('card-flip-out');
+      card.classList.add('flipped');
+    }, { once: true });
   }
 }
 
@@ -115,8 +121,14 @@ function toggleCardOnline(card) {
   if (myFlipped.has(name)) {
     myFlipped.delete(name);
     card.classList.remove('flipped');
+    card.classList.add('card-flip-in');
+    card.addEventListener('animationend', () => card.classList.remove('card-flip-in'), { once: true });
   } else {
     myFlipped.add(name);
-    card.classList.add('flipped');
+    card.classList.add('card-flip-out');
+    card.addEventListener('animationend', () => {
+      card.classList.remove('card-flip-out');
+      card.classList.add('flipped');
+    }, { once: true });
   }
 }
