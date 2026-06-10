@@ -38,11 +38,14 @@ function applyBoardLayout(el, count) {
     // card width from width constraint
     const maxByW  = Math.floor(availW / cols);
 
-    // Online single-board: prioritise filling width (board is taller, can scroll)
+    // Online single-board: use 1fr so cards fill full width naturally
     const isOnline = el.id === 'board-online';
-    const cardW   = Math.max(30, isOnline ? maxByW : Math.min(maxByH, maxByW));
-
-    el.style.gridTemplateColumns = `repeat(${cols}, ${cardW}px)`;
+    if (isOnline) {
+      el.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+    } else {
+      const cardW = Math.max(30, Math.min(maxByH, maxByW));
+      el.style.gridTemplateColumns = `repeat(${cols}, ${cardW}px)`;
+    }
   });
 }
 

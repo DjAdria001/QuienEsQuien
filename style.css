@@ -492,11 +492,24 @@ input[type="text"]:focus { border-color: var(--gold); }
 .online-single-board {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 #board-online {
   overflow: visible;
   height: auto;
   align-content: start;
+  /* Cards stretch to fill width; height follows aspect-ratio of image */
+  align-items: stretch;
+}
+#board-online .char-card {
+  width: 100%;
+}
+#board-online .card-img-wrap {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+}
+#board-online .card-name {
+  font-size: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .board-label {
