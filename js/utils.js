@@ -36,41 +36,6 @@ function generateRoomCode() {
   return code;
 }
 
-async function copyRoomCode() {
-  const code = document.getElementById('room-code-display').textContent.trim();
-  if (!code || code === '----') return;
-  try {
-    await navigator.clipboard.writeText(code);
-    const btn = document.querySelector('.btn-copy-code');
-    if (btn) {
-      const orig = btn.textContent;
-      btn.textContent = '✅ ¡Copiado!';
-      btn.style.background = 'var(--green, #22c55e)';
-      setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1800);
-    }
-  } catch {
-    // fallback
-    const ta = document.createElement('textarea');
-    ta.value = code;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-  }
-}
-
-async function pasteRoomCode() {
-  try {
-    const text = await navigator.clipboard.readText();
-    const input = document.getElementById('room-code-input');
-    if (input) input.value = text.trim().toUpperCase().slice(0, 6);
-  } catch {
-    // Si no hay permisos, focus en el input para que el usuario pegue manualmente
-    const input = document.getElementById('room-code-input');
-    if (input) input.focus();
-  }
-}
-
 function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }

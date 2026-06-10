@@ -104,28 +104,19 @@ function toggleCard(card, playerNum) {
     card.classList.remove('flipped');
   } else {
     flipped.add(name);
-    // Animación de giro
-    card.classList.add('flipping');
-    card.addEventListener('animationend', () => {
-      card.classList.remove('flipping');
-      card.classList.add('flipped');
-    }, { once: true });
+    card.classList.add('flipped');
   }
 }
 
 // ─── Toggle cartas — Online ───────────────────
 function toggleCardOnline(card) {
+  // Siempre se puede marcar/desmarcar — myFlipped es fuente de verdad local
   const name = card.dataset.name;
   if (myFlipped.has(name)) {
     myFlipped.delete(name);
     card.classList.remove('flipped');
   } else {
     myFlipped.add(name);
-    // Animación de giro
-    card.classList.add('flipping');
-    card.addEventListener('animationend', () => {
-      card.classList.remove('flipping');
-      card.classList.add('flipped');
-    }, { once: true });
+    card.classList.add('flipped');
   }
 }

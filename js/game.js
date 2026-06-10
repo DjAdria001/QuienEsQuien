@@ -102,7 +102,6 @@ function initLocalGame() {
   flippedP1     = new Set();
   flippedP2     = new Set();
   currentPlayer = 1;
-  turnCount     = 0;
   secretP1 = gameChars[Math.floor(Math.random() * gameChars.length)];
   do {
     secretP2 = gameChars[Math.floor(Math.random() * gameChars.length)];
@@ -136,10 +135,6 @@ function updateTurnUI() {
   document.getElementById('guess-input').value       = '';
   document.getElementById('guess-input').placeholder = `¿Cuál es el personaje de ${rivalName}?`;
 
-  // Actualizar contador de turnos
-  const counterEl = document.getElementById('turn-counter');
-  if (counterEl) counterEl.textContent = `Turno ${turnCount + 1}`;
-
   if (gameMode === 'online') {
     if (isMyTurn()) {
       hideWaitingTurnBanner();
@@ -152,10 +147,8 @@ function updateTurnUI() {
 function endTurn() {
   if (gameMode === 'online') {
     if (!isMyTurn()) return;
-    turnCount++;
     endTurnOnline();
   } else {
-    turnCount++;
     currentPlayer = currentPlayer === 1 ? 2 : 1;
     updateTurnUI();
     showPassDeviceModal();
@@ -294,8 +287,6 @@ function showWin(who, winnerName, secret) {
   document.getElementById('win-subtitle').textContent    = 'Adivinó el personaje secreto del rival';
   document.getElementById('win-secret-img').src          = secret.img;
   document.getElementById('win-secret-name').textContent = secret.name;
-  const turnsEl = document.getElementById('win-turns');
-  if (turnsEl) turnsEl.textContent = `Partida resuelta en ${turnCount} turno${turnCount !== 1 ? 's' : ''}`;
   showScreen('screen-win');
   cancelOnlineListeners();
 }
@@ -325,7 +316,6 @@ function goHome() {
   gameMode      = null;
   gameStarted   = false;
   currentPlayer = 1;
-  turnCount     = 0;
   flippedP1     = new Set();
   flippedP2     = new Set();
   myFlipped     = new Set();
@@ -346,21 +336,19 @@ function goHome() {
 
 function playAgain() {
   cancelOnlineListeners();
-  turnCount     = 0;
+  roomCode      = null;
+  myRole        = null;
+  mySecret      = null;
+  gameStarted   = false;
+  const secretBtn = document.getElementById('secret-btn-real');
+  if (secretBtn) secretBtn.remove();
+  document.getElementById('start-btn').disabled      = false;
+  document.getElementById('loading-msg').textContent = '';
   if (gameMode === 'local') {
-    // Revancha directa: reiniciar con los mismos personajes
-    const secretBtn = document.getElementById('secret-btn-real');
-    if (secretBtn) secretBtn.remove();
-    initLocalGame();
+    document.getElementById('player-names-section').style.display = '';
+    document.getElementById('setup-back-btn').style.display = '';
+    showScreen('screen-setup');
   } else {
-    roomCode      = null;
-    myRole        = null;
-    mySecret      = null;
-    gameStarted   = false;
-    const secretBtn = document.getElementById('secret-btn-real');
-    if (secretBtn) secretBtn.remove();
-    document.getElementById('start-btn').disabled      = false;
-    document.getElementById('loading-msg').textContent = '';
     goHome();
   }
 }

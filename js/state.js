@@ -16,7 +16,6 @@ let p1Name           = 'Jugador 1';
 let p2Name           = 'Jugador 2';
 let flippedP1        = new Set();
 let flippedP2        = new Set();
-let turnCount        = 0;  // Contador de turnos
 
 // ─── Estado online ───
 let roomCode         = null;

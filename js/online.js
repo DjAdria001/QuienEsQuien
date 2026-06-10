@@ -264,12 +264,12 @@ async function initOnlineGameAsP1() {
   } while (secretP2.name === secretP1.name);
   mySecret = secretP1;
 
-  await update(ref(db, `rooms/${roomCode}`), {\n    status:        'playing',
+  await update(ref(db, `rooms/${roomCode}`), {
+    status:        'playing',
     gameChars:     gameChars,
     secretP1:      secretP1,
     secretP2:      secretP2,
     currentPlayer: 1,
-    turnCount:     0,
     flippedP1:     [],
     flippedP2:     []
   });
@@ -318,7 +318,6 @@ function listenOnlineGameState(code) {
 
     const prevPlayer = currentPlayer;
     currentPlayer    = room.currentPlayer || 1;
-    turnCount        = room.turnCount || 0;
 
     // El primer disparo de onValue es el estado inicial al registrarse el listener.
     // En ese momento el modal secreto puede estar abriéndose (setTimeout 400ms),
@@ -435,6 +434,6 @@ async function handleOnlineWin() {
 async function endTurnOnline() {
   const { db, ref, update } = window.FB;
   const next = currentPlayer === 1 ? 2 : 1;
-  await update(ref(db, `rooms/${roomCode}`), { currentPlayer: next, turnCount: (turnCount + 1) });
+  await update(ref(db, `rooms/${roomCode}`), { currentPlayer: next });
   showWaitingTurnModal();
 }
