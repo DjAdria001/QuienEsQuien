@@ -13,23 +13,33 @@ function getBoardLayout(count) {
 function applyBoardLayout(el, count) {
   const { cols, rows, dataCount } = getBoardLayout(count);
   el.dataset.count = dataCount;
-  el.style.setProperty('--cols', cols);
 
-  // After next paint, measure available height and shrink card width if rows overflow
+  // Insert a probe card to measure real name label height
+  const probe = document.createElement('div');
+  probe.className = 'char-card';
+  probe.style.cssText = 'position:absolute;visibility:hidden;width:80px';
+  probe.innerHTML = '<div class="card-img-wrap" style="aspect-ratio:1/1;width:100%"></div><div class="card-name">A</div>';
+  el.appendChild(probe);
+
   requestAnimationFrame(() => {
-    const gap     = 6;
-    const padding = 16; // 8px each side
-    const nameH   = 22; // approx card-name height px
-    const availH  = el.clientHeight - padding - (rows - 1) * gap;
-    const availW  = el.clientWidth  - padding - (cols - 1) * gap;
+    const nameH   = probe.querySelector('.card-name').offsetHeight || 20;
+    probe.remove();
 
-    // Each card: square image + name label. Card height = cardW + nameH
-    // rows * (cardW + nameH) <= availH  →  cardW <= (availH/rows) - nameH
-    const maxByHeight = Math.floor(availH / rows) - nameH;
-    const maxByWidth  = Math.floor(availW / cols);
-    const cardW       = Math.max(36, Math.min(maxByHeight, maxByWidth));
+    const style   = getComputedStyle(el);
+    const gap     = parseFloat(style.gap) || 5;
+    const padX    = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight) || 16;
+    const padY    = parseFloat(style.paddingTop)  + parseFloat(style.paddingBottom) || 16;
 
-    el.style.setProperty('--cols', cols);
+    const availW  = el.clientWidth  - padX - (cols - 1) * gap;
+    const availH  = el.clientHeight - padY - (rows - 1) * gap;
+
+    // card width from height constraint: rows*(cardW + nameH) = availH
+    const maxByH  = Math.floor((availH / rows) - nameH);
+    // card width from width constraint
+    const maxByW  = Math.floor(availW / cols);
+
+    const cardW   = Math.max(30, Math.min(maxByH, maxByW));
+
     el.style.gridTemplateColumns = `repeat(${cols}, ${cardW}px)`;
   });
 }
