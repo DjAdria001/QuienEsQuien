@@ -33,15 +33,17 @@ function applyBoardLayout(el, count) {
     const availW = el.clientWidth  - padX - (cols - 1) * gap;
     const availH = el.clientHeight - padY - (rows - 1) * gap;
 
-    // Fit cards to fill both axes: image is square (cardW x cardW) + nameH label
-    // Max by width:  cardW <= availW / cols
-    // Max by height: cardW + nameH <= availH / rows  =>  cardW <= availH/rows - nameH
+    // Online board: use more columns and prioritise width to make cards bigger
+    const isOnline = el.id === 'board-online';
+    const effectiveCols = isOnline ? Math.ceil(cols * 1.5) : cols;
+    const effectiveRows = isOnline ? Math.ceil(count / effectiveCols) : rows;
+
     const cardW = Math.max(20, Math.min(
-      Math.floor(availW / cols),
-      Math.floor(availH / rows - nameH)
+      Math.floor(availW / effectiveCols),
+      Math.floor(availH / effectiveRows - nameH)
     ));
-    el.style.gridTemplateColumns = `repeat(${cols}, ${cardW}px)`;
-    el.style.gridTemplateRows    = `repeat(${rows}, auto)`;
+    el.style.gridTemplateColumns = `repeat(${effectiveCols}, ${cardW}px)`;
+    el.style.gridTemplateRows    = `repeat(${effectiveRows}, auto)`;
   });
 }
 
