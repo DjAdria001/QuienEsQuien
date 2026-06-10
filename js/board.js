@@ -30,16 +30,18 @@ function applyBoardLayout(el, count) {
     const padX    = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight) || 0;
     const padY    = parseFloat(style.paddingTop)  + parseFloat(style.paddingBottom) || 0;
 
-    const availW  = el.clientWidth  - padX - (cols - 1) * gap;
-    const availH  = el.clientHeight - padY - (rows - 1) * gap;
+    const availW = el.clientWidth  - padX - (cols - 1) * gap;
+    const availH = el.clientHeight - padY - (rows - 1) * gap;
 
-    // card width from height constraint: rows*(cardW + nameH) = availH
-    const maxByH  = Math.floor((availH / rows) - nameH);
-    // card width from width constraint
-    const maxByW  = Math.floor(availW / cols);
-
-    const cardW = Math.max(30, Math.min(maxByH, maxByW));
+    // Fit cards to fill both axes: image is square (cardW x cardW) + nameH label
+    // Max by width:  cardW <= availW / cols
+    // Max by height: cardW + nameH <= availH / rows  =>  cardW <= availH/rows - nameH
+    const cardW = Math.max(20, Math.min(
+      Math.floor(availW / cols),
+      Math.floor(availH / rows - nameH)
+    ));
     el.style.gridTemplateColumns = `repeat(${cols}, ${cardW}px)`;
+    el.style.gridTemplateRows    = `repeat(${rows}, auto)`;
   });
 }
 
