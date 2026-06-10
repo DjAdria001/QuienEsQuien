@@ -490,7 +490,13 @@ input[type="text"]:focus { border-color: var(--gold); }
 
 /* Online: tablero ocupa más espacio */
 .online-single-board {
-  flex: 1.6;
+  flex: 1;
+  overflow-y: auto;
+}
+#board-online {
+  overflow: visible;
+  height: auto;
+  align-content: start;
 }
 
 .board-label {
@@ -608,8 +614,9 @@ input[type="text"]:focus { border-color: var(--gold); }
 
 /* ===== CHAT PANEL ===== */
 .chat-panel {
-  width: 280px;
-  min-width: 220px;
+  width: 200px;
+  min-width: 160px;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
   border-left: 1px solid var(--card-border);
