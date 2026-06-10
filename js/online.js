@@ -51,9 +51,17 @@ async function createRoom() {
   const statusEl  = document.getElementById('online-status');
 
   if (!window.FB) {
-    statusEl.textContent = '❌ Firebase no está configurado. Revisa firebase.js';
-    statusEl.style.color = 'var(--red)';
-    return;
+    statusEl.textContent = '⏳ Conectando con Firebase...';
+    statusEl.style.color = 'var(--gold)';
+    for (let i = 0; i < 30; i++) {
+      await new Promise(r => setTimeout(r, 100));
+      if (window.FB) break;
+    }
+    if (!window.FB) {
+      statusEl.textContent = '❌ No se pudo conectar con Firebase. Comprueba tu conexión.';
+      statusEl.style.color = 'var(--red)';
+      return;
+    }
   }
 
   const code = generateRoomCode();
@@ -102,9 +110,17 @@ async function joinRoom() {
   const statusEl  = document.getElementById('online-status');
 
   if (!window.FB) {
-    statusEl.textContent = '❌ Firebase no está configurado. Revisa firebase.js';
-    statusEl.style.color = 'var(--red)';
-    return;
+    statusEl.textContent = '⏳ Conectando con Firebase...';
+    statusEl.style.color = 'var(--gold)';
+    for (let i = 0; i < 30; i++) {
+      await new Promise(r => setTimeout(r, 100));
+      if (window.FB) break;
+    }
+    if (!window.FB) {
+      statusEl.textContent = '❌ No se pudo conectar con Firebase. Comprueba tu conexión.';
+      statusEl.style.color = 'var(--red)';
+      return;
+    }
   }
 
   if (codeInput.length < 4) {
