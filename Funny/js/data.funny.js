@@ -82,11 +82,6 @@ const JJK_CHARACTERS = [
   { name: "Mahoraga",               img: "https://preview.redd.it/guys-why-are-they-no-yuki-memes-v0-hqvx0bv7c2rb1.jpg?auto=webp&s=aca00abcdbf4db23e484983fad44304bffbcd3b5" },
 ];
 
-// GEN_RANGES es el mismo que el principal (los Pokémon no cambian)
-const GEN_RANGES = {
-  0:[1,1025],1:[1,151],2:[152,251],3:[252,386],4:[387,493],
-  5:[494,649],6:[650,721],7:[722,809],8:[810,905],9:[906,1025],
-};
 
 // =============================================
 //  DATOS FUNNY — Resident Evil (memes / gifs)
@@ -134,79 +129,3 @@ const RE_CHARACTERS = [
   { name: "Rose Winters",         img: "https://media.tenor.com/9dzBnl00jJIAAAAe/rosemary-winters-resident-evil-8.png" },
 ];
 
-// =============================================
-//  DATOS — Personajes de Terror
-// =============================================
-const HORROR_CHARACTERS = [
-  { name: "Pennywise",            img: "" },
-  { name: "Freddy Krueger",       img: "" },
-  { name: "Jason Voorhees",       img: "" },
-  { name: "Michael Myers",        img: "" },
-  { name: "Leatherface",          img: "" },
-  { name: "Chucky",               img: "" },
-  { name: "Ghostface",            img: "" },
-  { name: "Pinhead",              img: "" },
-  { name: "Samara Morgan",        img: "" },
-  { name: "Jigsaw / John Kramer", img: "" },
-  { name: "Art the Clown",        img: "" },
-  { name: "Xenomorph",            img: "" },
-  { name: "Annabelle",            img: "" },
-  { name: "Beetlejuice",          img: "" },
-  { name: "Predator",             img: "" },
-  { name: "Freddy Fazbear",       img: "" },
-  { name: "Slenderman",           img: "" },
-  { name: "Ash Williams",         img: "" },
-  { name: "Hannibal Lecter",      img: "" },
-  { name: "Tomie",                img: "" },
-  { name: "The Nun",              img: "" },
-  { name: "Springtrap",           img: "" },
-  { name: "Jack Torrance",        img: "" },
-];
-
-// =============================================
-//  DATOS — Personajes de Dead by Daylight
-// =============================================
-const DBD_CHARACTERS = [
-  { name: "The Trapper",        img: "" },
-  { name: "The Wraith",         img: "" },
-  { name: "The Hillbilly",      img: "" },
-  { name: "The Nurse",          img: "" },
-  { name: "The Shape",          img: "" },
-  { name: "The Hag",            img: "" },
-  { name: "The Doctor",         img: "" },
-  { name: "The Huntress",       img: "" },
-  { name: "The Cannibal",       img: "" },
-  { name: "The Nightmare",      img: "" },
-  { name: "The Pig",            img: "" },
-  { name: "The Clown",          img: "" },
-  { name: "The Spirit",         img: "" },
-  { name: "The Legion",         img: "" },
-  { name: "The Plague",         img: "" },
-  { name: "The Ghost Face",     img: "" },
-  { name: "The Demogorgon",     img: "" },
-  { name: "The Oni",            img: "" },
-  { name: "The Deathslinger",   img: "" },
-  { name: "The Executioner",    img: "" },
-  { name: "The Blight",         img: "" },
-  { name: "The Twins",          img: "" },
-  { name: "The Trickster",      img: "" },
-  { name: "The Nemesis",        img: "" },
-  { name: "The Cenobite",       img: "" },
-  { name: "The Artist",         img: "" },
-  { name: "The Onryō",          img: "" },
-  { name: "The Dredge",         img: "" },
-  { name: "The Mastermind",     img: "" },
-  { name: "The Knight",         img: "" },
-  { name: "The Skull Merchant", img: "" },
-  { name: "The Singularity",    img: "" },
-  { name: "The Xenomorph",      img: "" },
-  { name: "The Good Guy",       img: "" },
-  { name: "The Unknown",        img: "" },
-  { name: "The Lich",           img: "" },
-  { name: "The Dark Lord",      img: "" },
-  { name: "The Houndmaster",    img: "" },
-  { name: "The Ghoul",          img: "" },
-  { name: "The Animatronic",    img: "" },
-  { name: "The Krasue",         img: "" },
-  { name: "The Slasher",        img: "" }
-];
